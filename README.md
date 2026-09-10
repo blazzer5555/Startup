@@ -1,62 +1,50 @@
-# Your startup name here
+# The Treasure of Mount Wind
 
 [My Notes](notes.md)
 
-A brief description of the application here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+A browser based multiplayer Dungeons and Dragons-esque game, made my my older brother. 
 
-> [!NOTE]
-> This is a template for your startup application. You must modify this `README.md` file for each phase of your development. You only need to fill in the section for each deliverable when that deliverable is submitted in Canvas. Without completing the section for a deliverable, the TA will not know what to look for when grading your submission. Feel free to add additional information to each deliverable description, but make sure you at least have the list of rubric items and a description of what you did for each item.
-
-> [!NOTE]
-> If you are not familiar with Markdown then you should review the [documentation](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) before continuing.
 
 ### Elevator pitch
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Create your own character, traverse perplexing mazes filled with puzzles, fight various enemies, and create your own story as you travel your way through the infamous Mount Wind.
 
 ### Design
 
-![Design image](placeholder.png)
+![Design image](Gameplay_UI.png)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-```mermaid
-sequenceDiagram
-    actor You
-    actor Website
-    You->>Website: Replace this with your design
-```
+Once you've gotten through the intro, the gameplay allows one person in the party to control the viewfinder and traverse the maze. As you go through it, you'll run into encounters that trigger events for you to get through. Use dice rolls and your own intuition to defeat enemies, solve riddles, find items, or help someone in their time of need.
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- Randomly generated mazes and encounters. Every playthough is different!
+- Use of an AI to act as the narrator.
+- Real-time updates of maze navigation to all players, and the ability for people to switch between who controls the maze.
 
 ### Technologies
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **HTML** - I will use HTML to organize the webpage as such:
+    1. Opening the page prompts you for a sign in or sign up.
+    2. Once you have signed in, a menu allows you to host or join games with other people on the website.
+    3. Once you are joined in a game, you are presented with the gameplay UI.
+- **CSS** - I will use CSS to help make the interfaces easy to navigate, as well as make the design of the actuall gameplay UI inviting and appealing.
+- **React** - I will use JavaScript and React to implement the use of buttons. Many many buttons. Buttons for signing in, joining and hosting games, rolling dice, adding and subtracting stats, the whole shabang.
+- **Service** - The server will be the backbone of the app. It will process information received by the user and act accordingly. If the user does something that would change the state of their character, it updates it in the database. If the party leader moves the viewfinder around the map, it will send the information to other players in the game via websocket. It will also use an external AI API to help run and narrate the game.
+- **DB/Login** - The database will help store all the information related to what games people have joined, the characters they made, and the progress they've made in the games, that way games can persist outside of just one browser session.
+- **WebSocket** - The main purpose of the websocket is to allow the real-time updating of the party leader's actions of the viewfinder to all party members. It is the main backbone that allows multiple people to play at once, with things like sharing items, using dice rolls, etc.
 
 ## 🚀 Specification Deliverable
 
-> [!NOTE]
-> Fill in this sections as the submission artifact for this deliverable. You can refer to this [example](https://github.com/webprogramming260/startup-example/blob/main/README.md) for inspiration.
-
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] I completed the prerequisites for this deliverable (Git commit requirement)
-- [ ] Proper use of Markdown
-- [ ] A concise and compelling elevator pitch
-- [ ] Description of key features
-- [ ] Description of how you will use each technology including your 3rd party API and use of WebSocket
-- [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
+- [x] I completed the prerequisites for this deliverable (Git commit requirement)
+- [x] Proper use of Markdown
+- [x] A concise and compelling elevator pitch
+- [x] Description of key features
+- [x] Description of how you will use each technology including your 3rd party API and use of WebSocket
+- [x] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ## 🚀 AWS deliverable
 
