@@ -50,9 +50,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Rented EC2 server** - I did not complete this part of the deliverable.
-- [ ] **Leased domain name** - I did not complete this part of the deliverable.
-- [ ] **Server accessible** from my domain: [https://yourdomainnamehere.click](https://yourdomainnamehere.click) - I did not complete this part of the deliverable.
+- [x] **Rented EC2 server** - The server was originally using the IP address 3.236.10.82.
+- [x] **Leased domain name** - I changed the domain name to "thetreasureofmountwind.click"
+- [x] **Server accessible** from my domain: [https://thetreasureofmountwind.click](https://thetreasureofmountwind.click) 
 
 ## 🚀 HTML deliverable
 
