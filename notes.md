@@ -4,8 +4,8 @@ I love web programming!
 
 This file represents what I have learned about web programming.
 
-- [My startup](https://startup.cs260.click)
-- [My simon](https://simon.cs260.click)
+- [My startup](https://startup.thetreasureofmountwind.click)
+- [My simon](https://simon.thetreasureofmountwind.click)
 
 ## Helpful links
 
@@ -15,7 +15,8 @@ This file represents what I have learned about web programming.
 
 ## AWS
 
-Interesting things I have learned about AWS
+Just find it interesting that the service is called "elastic IP", when it doesn't 
+change at all after you lock it in.
 
 ## HTML
 
