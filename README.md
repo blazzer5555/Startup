@@ -58,16 +58,16 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
+- [x] **HTML pages** - My website has four pages: index.html, login.html, connect.html, and play.html.
+- [x] **Proper HTML element usage** - All of my pages go from header to body to footer, and everything else is indented and organized correctly.
+- [x] **Links** - I have a navigation bar at the top of each page that leads to all other pages, as well as some well places links where it would make sense (Like clicking "join game" sends you to play.html)
+- [x] **Text** - Not sure what this means, but yes, many text exist in my webpage.
+- [x] **3rd party API placeholder** - The AI is going to help be dungeon master in the gameplay, and the placeholder is noticed in the play.html
+- [x] **Images** - I added the picture of what the gameplay UI looks like in play.html, since making it pretty is for CSS.
+- [x] **Login placeholder** - The login and register fields exist on the login.html
+- [x] **DB data placeholder** - The information that's stored in the databse is the user's stored characters as well as sessions that have been created.
+- [x] **WebSocket placeholder** - The websocket placeholder exists on the play.html page for other client's movements of the viewfinder to updated to all clients.
 
 ## 🚀 CSS deliverable
 
