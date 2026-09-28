@@ -1,5 +1,7 @@
 body {
     color: black;
+    display: flex;
+    flex-direction: column;
 }
 
 h1 {
@@ -10,5 +12,13 @@ h1 {
 }
 
 nav {
-    background-color: black;
+    background-color: rgb(83, 0, 0);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar {
+    color: #dddddd;
 }
