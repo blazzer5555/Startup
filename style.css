@@ -1,3 +1,11 @@
 body {
-    color: red;
+    color: black;
 }
+
+h1 {
+    background-color: maroon;
+    color: #dddddd;
+    display: flex;
+    justify-content: center;
+}
+
