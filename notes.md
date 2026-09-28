@@ -23,7 +23,7 @@ change at all after you lock it in.
 
 ## HTML
 
-Interesting things I have learned about HTML
+I need to remember that justify-content goes with the direction specified in flex-direction, and that align-items goes the perpendicular way.
 
 ## React
 
