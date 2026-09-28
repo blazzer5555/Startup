@@ -22,3 +22,8 @@ nav {
 .navbar {
     color: #dddddd;
 }
+
+.UI {
+    display: flex;
+    justify-content: space-between;
+}
