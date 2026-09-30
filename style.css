@@ -48,6 +48,10 @@ footer {
     flex-direction: column;
 }
 
+.github-link {
+    color: rgb(255, 0, 0);
+}
+
 .UI {
     display: flex;
     justify-content: space-between;
