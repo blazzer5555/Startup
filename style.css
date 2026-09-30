@@ -13,6 +13,7 @@ h1 {
     display: flex;
     justify-content: center;
     margin: 0;
+    font-family: "Times New Roman", serif;
 }
 
 header {
@@ -41,13 +42,27 @@ nav a {
     color: #dddddd;
 }
 
+footer {
+    background-color: #cabeb6;
+    display: flex;
+    flex-direction: column;
+}
+
 .UI {
     display: flex;
     justify-content: space-between;
 }
 
-footer {
-    background-color: #cabeb6;
-    display: flex;
-    flex-direction: column;
+.intro {
+    font-family:Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.login-prompt {
+    --bs-btn-bg: maroon;
+    --bs-btn-border-color: black;
+    --bs-btn-hover-bg: rgb(83, 0, 0);
+    --bs-btn-hover-border-color: black;
+    --bs-btn-active-bg: rgb(50, 0, 0);
+    --bs-btn-active-border-color: black;
 }
