@@ -71,7 +71,7 @@ footer {
     justify-content: space-around;
 }
 
-.login-prompt {
+.maroon-button {
     --bs-btn-bg: maroon;
     --bs-btn-border-color: black;
     --bs-btn-hover-bg: rgb(83, 0, 0);
@@ -173,7 +173,7 @@ footer {
     place-items: center;
     border: 2px solid black;
     border-radius: 50%;
-    background-color: white;
+    background-color: tan;
 }
 
 .game-sidebar {
