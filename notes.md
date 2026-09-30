@@ -25,6 +25,8 @@ change at all after you lock it in.
 
 I need to remember that justify-content goes with the direction specified in flex-direction, and that align-items goes the perpendicular way.
 
+I learned how to organize things with CSS. In order to gets some things on a page laid out perpendicular to each other, you can just wrap what you want in an element, create a class for that element, then whatever you need horizontal you flex-forizontal, and for vertical you vertical. You can see an example of this in the connect page, where the page is structured in a vertical sense, but the Host Game section entry fields are in rows.
+
 ## React
 
 Interesting things I have learned about React
