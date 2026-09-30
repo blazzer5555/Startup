@@ -161,9 +161,16 @@ footer {
 
 .game-view {
     display: grid;
+    grid-template-rows: auto 1fr;
     min-width: 0;
     place-items: center;
+    background-color: #dddddd;
     border-right: 2px solid black;
+}
+
+.game-view h2 {
+    margin: 0;
+    font-size: 1.25rem;
 }
 
 .map-marker {
@@ -173,7 +180,7 @@ footer {
     place-items: center;
     border: 2px solid black;
     border-radius: 50%;
-    background-color: tan;
+    background-color: white;
 }
 
 .game-sidebar {
