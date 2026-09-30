@@ -53,11 +53,6 @@ footer {
     color: rgb(255, 0, 0);
 }
 
-.UI {
-    display: flex;
-    justify-content: space-between;
-}
-
 .intro {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
@@ -125,3 +120,116 @@ footer {
     flex-direction: row;
     align-items: center;
 }
+
+.UI {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.game-layout {
+    display: grid;
+    flex: 1 1 0;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr) minmax(0, 2fr);
+    align-items: stretch;
+    min-height: 0;
+    width: 100%;
+}
+
+.game-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 0;
+    padding: 1rem;
+    border-right: 2px solid black;
+}
+
+.game-action-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.game-action-list .btn {
+    white-space: normal;
+}
+
+.game-exit {
+    align-self: flex-start;
+}
+
+.game-view {
+    display: grid;
+    min-width: 0;
+    place-items: center;
+    border-right: 2px solid black;
+}
+
+.map-marker {
+    display: grid;
+    width: 100px;
+    height: 100px;
+    place-items: center;
+    border: 2px solid black;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.game-sidebar {
+    display: grid;
+    min-height: 0;
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+}
+
+.game-stats,
+.game-equipment,
+.game-inventory {
+    min-height: 0;
+    overflow: auto;
+    padding: 1rem;
+}
+
+.game-stats,
+.game-equipment {
+    border-bottom: 2px solid black;
+}
+
+.game-stats h2,
+.game-equipment h2,
+.game-inventory h2 {
+    margin: 0 0 0.75rem;
+    font-size: 1.25rem;
+    text-align: center;
+}
+
+.game-stats dl {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem 1rem;
+    margin: 0;
+}
+
+.game-stats dl div {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.game-stats dt,
+.game-stats dd {
+    margin: 0;
+}
+
+.game-equipment ul,
+.game-inventory ul {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+.game-equipment li span,
+.game-inventory li span {
+    display: block;
+    font-size: 0.875rem;
+}
+
