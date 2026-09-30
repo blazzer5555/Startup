@@ -94,9 +94,14 @@ footer {
     gap: 1rem;
 }
 
+.listed-games {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+}
+
 .active-games-table {
     border: 3px solid black;
-    width: 95%;
 }
 
 .active-games-table th {
@@ -107,4 +112,16 @@ footer {
 .active-games-table td {
     border: 1px solid black;
     background-color: rgb(243, 208, 163);
+}
+
+.host-game-input {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+}
+
+.host-input-fields {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
