@@ -179,7 +179,7 @@ footer {
 .game-sidebar {
     display: grid;
     min-height: 0;
-    grid-template-rows: repeat(3, minmax(0, 1fr));
+    grid-template-rows: 2fr 3fr 3fr;
 }
 
 .game-stats,
@@ -188,6 +188,13 @@ footer {
     min-height: 0;
     overflow: auto;
     padding: 1rem;
+}
+
+.game-stats {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    overflow: hidden;
+    padding: clamp(0.25rem, 1vh, 0.75rem);
 }
 
 .game-stats,
@@ -203,11 +210,21 @@ footer {
     text-align: center;
 }
 
+.game-stats h2 {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.1;
+}
+
 .game-stats dl {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.5rem 1rem;
+    grid-template-rows: repeat(3, minmax(min-content, 1fr));
+    gap: clamp(0px, 0.4vh, 0.5rem) 1rem;
+    min-height: 0;
     margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.1;
 }
 
 .game-stats dl div {
