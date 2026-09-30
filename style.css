@@ -58,8 +58,21 @@ footer {
 }
 
 .intro {
-    font-family:Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     text-align: center;
+}
+
+.credentials {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-page {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
 .login-prompt {
