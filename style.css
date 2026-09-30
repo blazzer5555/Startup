@@ -83,3 +83,10 @@ footer {
     --bs-btn-active-bg: rgb(50, 0, 0);
     --bs-btn-active-border-color: black;
 }
+
+.connect-menu-buttons {
+    display: flex;
+    flex-direction: row;
+    margin: 1rem;
+    gap: 1rem;
+}
