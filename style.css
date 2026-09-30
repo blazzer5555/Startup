@@ -20,7 +20,7 @@ header {
 }
 
 main {
-    background-color: rgb(244, 175, 57);
+    background-color: rgb(255, 185, 65);
     display: flex;
     flex-direction: column;
     flex: 2;
@@ -47,7 +47,7 @@ nav a {
 }
 
 footer {
-    background-color: #aaaaaa;
+    background-color: #cabeb6;
     display: flex;
     flex-direction: column;
 }
