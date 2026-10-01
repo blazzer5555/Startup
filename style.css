@@ -159,8 +159,14 @@ footer {
     white-space: normal;
 }
 
-.game-exit {
+#exit-game {
     align-self: flex-start;
+    --bs-btn-bg: rgb(85, 85, 85);
+    --bs-btn-border-color: black;
+    --bs-btn-hover-bg: rgb(40, 40, 40);
+    --bs-btn-hover-border-color: black;
+    --bs-btn-active-bg: black;
+    --bs-btn-active-border-color: black;
 }
 
 .game-view {
