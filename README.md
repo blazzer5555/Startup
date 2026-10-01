@@ -78,8 +78,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [X] **Use of a CSS framework** - I used bootstrap buttons and entry fields primarily, everything else was custom.
 - [X] **All visual elements styled using CSS** - Yes. Nothing else to report.
 - [X] **Responsive to window resizing using flexbox and/or grid display** - Everything uses flex, and everything fits nicely no matter what desktop size you have. I however did not accomodate for mobile or portrait yet.
-- [ ] **Use of a imported font** - I used different fonts, but I'm not sure if I imported one.
-- [X] **Use of different types of selectors including element, class, ID, and pseudo selectors** - I used element, class, and ID selectors. I might've used pseudo selectors, but I forget what those are. For the most part though, I fulfilled this by not using in line CSS.
+- [X] **Use of a imported font** - I imported Tinos from Google Fonts.
+- [X] **Use of different types of selectors including element, class, ID, and pseudo selectors** - I used element and class selectors liberally, pseudo selectors for the nav links, and one id selector for the exit game button on the play page.
 
 ## 🚀 React part 1: Routing deliverable
 
