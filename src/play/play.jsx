@@ -3,33 +3,33 @@ import '../app.css';
 
 export function Play() {
     return (
-        <main class="game-layout">
-            <aside class="game-actions" aria-label="Game actions">
-                <div class="game-action-list">
-                    <button type="button" class="btn btn-outline-dark">Roll
+        <main className="game-layout">
+            <aside className="game-actions" aria-label="Game actions">
+                <div className="game-action-list">
+                    <button type="button" className="btn btn-outline-dark">Roll
                         D20</button>
-                    <button type="button" class="btn btn-outline-dark">Enemy
+                    <button type="button" className="btn btn-outline-dark">Enemy
                         Roll</button>
-                    <button type="button" class="btn btn-outline-dark">Draw
+                    <button type="button" className="btn btn-outline-dark">Draw
                         Blow</button>
-                    <button type="button" class="btn btn-outline-dark">Hurt
+                    <button type="button" className="btn btn-outline-dark">Hurt
                         Blow</button>
                     <button type="button"
-                        class="btn btn-outline-dark">Intelligence Check</button>
-                    <button type="button" class="btn btn-outline-dark">Courage
+                        className="btn btn-outline-dark">Intelligence Check</button>
+                    <button type="button" className="btn btn-outline-dark">Courage
                         Check</button>
                 </div>
                 <a href="./connect.html"
-                    class="btn btn-primary maroon-button" id="exit-game">
+                    className="btn btn-primary maroon-button" id="exit-game">
                     Exit Game
                 </a>
             </aside>
-            <section class="game-view" aria-label="Game view">
+            <section className="game-view" aria-label="Game view">
                 <h2>VIEWFINDER</h2>
-                <div class="map-marker">Lantern</div>
+                <div className="map-marker">Lantern</div>
             </section>
-            <aside class="game-sidebar" aria-label="Character information">
-                <section class="game-stats">
+            <aside className="game-sidebar" aria-label="Character information">
+                <section className="game-stats">
                     <h2>Character Stats</h2>
                     <dl>
                         <div><dt>Strength</dt><dd>10</dd></div>
@@ -40,7 +40,7 @@ export function Play() {
                         <div><dt>Fate</dt><dd>3</dd></div>
                     </dl>
                 </section>
-                <section class="game-equipment">
+                <section className="game-equipment">
                     <h2>Equipped Items</h2>
                     <ul>
                         <li>Chainmail <span>+2 Toughness</span></li>
@@ -49,7 +49,7 @@ export function Play() {
                         <li>Helmet of Wisdom <span>+2 Intelligence</span></li>
                     </ul>
                 </section>
-                <section class="game-inventory">
+                <section className="game-inventory">
                     <h2>Inventory</h2>
                     <ul>
                         <li>Lantern</li>
