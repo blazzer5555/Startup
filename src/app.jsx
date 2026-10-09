@@ -21,7 +21,13 @@ export default function App() {
                     </nav>
                 </header>
 
-                <main>App components go here</main>
+                <Routes>
+                    <Route path='/home' element={<Home />} />
+                    <Route path='/play' element={<Play />} />
+                    <Route path='/connect' element={<Connect />} />
+                    <Route path='/login' element={<Login />} />
+                    <Route path='*' element={<NotFound />} />
+                </Routes>
 
                 <footer>
                     <div>
@@ -33,4 +39,8 @@ export default function App() {
             </div>
         </BrowserRouter>
     );
+}
+
+function NotFound() {
+  return <main className="container-fluid bg-secondary text-center">404: Return to sender. Address unknown.</main>;
 }
