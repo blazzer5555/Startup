@@ -14,10 +14,10 @@ export default function App() {
                 <header>
                     <h1>THE TREASURE OF MOUNT WIND</h1>
                     <nav>
-                        <NavLink className='nav-link' to='play'>Play Page</NavLink>
                         <NavLink className='nav-link' to='home'>Home Page</NavLink>
                         <NavLink className='nav-link' to='login'>Login Page</NavLink>
                         <NavLink className='nav-link' to='connect'>Connection Page</NavLink>
+                        <NavLink className='nav-link' to='play'>Play Page</NavLink>
                     </nav>
                 </header>
 
@@ -33,7 +33,7 @@ export default function App() {
                     <div>
                         <p>This was made by David Bassett</p>
                         <a href="https://github.com/blazzer5555/Startup"
-                            class="github-link">link to my github</a>
+                            className="github-link">link to my github</a>
                     </div>
                 </footer>
             </div>
@@ -42,5 +42,5 @@ export default function App() {
 }
 
 function NotFound() {
-  return <main className="container-fluid bg-secondary text-center">404: Return to sender. Address unknown.</main>;
+  return <main className="container-fluid bg-secondary text-center">404: Address unknown.</main>;
 }
