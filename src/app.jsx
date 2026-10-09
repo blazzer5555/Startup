@@ -22,6 +22,7 @@ export default function App() {
                 </header>
 
                 <Routes>
+                    <Route path='/' element={<Home />} exact />
                     <Route path='/home' element={<Home />} />
                     <Route path='/play' element={<Play />} />
                     <Route path='/connect' element={<Connect />} />
