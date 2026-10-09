@@ -10,7 +10,7 @@ import { Home } from './home/home';
 export default function App() {
     return (
         <BrowserRouter>
-            <div>
+            <div className="app-layout">
                 <header>
                     <h1>THE TREASURE OF MOUNT WIND</h1>
                     <nav>
