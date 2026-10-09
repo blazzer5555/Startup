@@ -14,10 +14,10 @@ export default function App() {
                 <header>
                     <h1>THE TREASURE OF MOUNT WIND</h1>
                     <nav>
-                        <a href="./index.html">Home page</a>
-                        <a href="./login.html">Login page</a>
-                        <a href="./connect.html">Connection page</a>
-                        <a href="./play.html">Play page</a>
+                        <NavLink className='nav-link' to='play'>Play Page</NavLink>
+                        <NavLink className='nav-link' to='home'>Home Page</NavLink>
+                        <NavLink className='nav-link' to='login'>Login Page</NavLink>
+                        <NavLink className='nav-link' to='connect'>Connection Page</NavLink>
                     </nav>
                 </header>
 
