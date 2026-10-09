@@ -14,15 +14,15 @@ export default function App() {
                 <header>
                     <h1>THE TREASURE OF MOUNT WIND</h1>
                     <nav>
-                        <NavLink className='nav-link' to='home'>Home Page</NavLink>
-                        <NavLink className='nav-link' to='login'>Login Page</NavLink>
-                        <NavLink className='nav-link' to='connect'>Connection Page</NavLink>
-                        <NavLink className='nav-link' to='play'>Play Page</NavLink>
+                        <NavLink className='nav-link' to='/home'>Home Page</NavLink>
+                        <NavLink className='nav-link' to='/login'>Login Page</NavLink>
+                        <NavLink className='nav-link' to='/connect'>Connection Page</NavLink>
+                        <NavLink className='nav-link' to='/play'>Play Page</NavLink>
                     </nav>
                 </header>
 
                 <Routes>
-                    <Route path='/' element={<Home />} exact />
+                    <Route path='/' element={<Home />} />
                     <Route path='/home' element={<Home />} />
                     <Route path='/play' element={<Play />} />
                     <Route path='/connect' element={<Connect />} />
