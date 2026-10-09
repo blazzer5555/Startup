@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../app.css';
 
 export function Connect() {
@@ -26,28 +27,25 @@ export function Connect() {
                         <td>Lol Lmao</td>
                         <td>Dimingus</td>
                         <td>2/10</td>
-                        <td><a href="./play.html"
-                            className="btn btn-primary maroon-button">
+                        <td><Link to="/play" className="btn btn-primary maroon-button">
                             Join Game
-                        </a></td>
+                        </Link></td>
                     </tr>
                     <tr>
                         <td>Just hop on iN</td>
                         <td>Silencce</td>
                         <td>1/4</td>
-                        <td><a href="./play.html"
-                            className="btn btn-primary maroon-button">
+                        <td><Link to="/play" className="btn btn-primary maroon-button">
                             Join Game
-                        </a></td>
+                        </Link></td>
                     </tr>
                     <tr>
                         <td>Sir Thieves</td>
                         <td>Aavalos</td>
                         <td>5/5</td>
-                        <td><a href="./play.html"
-                            className="btn btn-primary maroon-button">
+                        <td><Link to="/play" className="btn btn-primary maroon-button">
                             Join Game
-                        </a></td>
+                        </Link></td>
                     </tr>
                 </table>
                 <div>
@@ -70,10 +68,9 @@ export function Connect() {
                         className="form-control w-25"
                         placeholder="Max"></input>
                 </div>
-                <a href="./play.html"
-                    className="btn btn-primary maroon-button align-self-start mt-3">
+                <Link to="/play" className="btn btn-primary maroon-button align-self-start mt-3">
                     Host Game
-                </a>
+                </Link>
             </section>
 
         </main>

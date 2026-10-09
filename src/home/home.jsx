@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../app.css';
 
 export function Home() {
@@ -16,10 +17,9 @@ export function Home() {
                     lives swallowed in the soul of the mountain?
                 </p>
             </div>
-            <a href="./login.html"
-                className="btn btn-primary maroon-button align-self-center">
+            <Link to="/login" className="btn btn-primary maroon-button align-self-center">
                 Login or Register
-            </a>
+            </Link>
         </main>
     );
 }

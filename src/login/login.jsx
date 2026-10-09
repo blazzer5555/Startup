@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../app.css';
 
 export function Login() {
@@ -18,10 +19,9 @@ export function Login() {
                         className="form-control"
                         placeholder="password"></input>
                 </div>
-                <a href="./connect.html"
-                    className="btn btn-primary maroon-button align-self-center mt-3">
+                <Link to="/connect" className="btn btn-primary maroon-button align-self-center mt-3">
                     Login
-                </a>
+                </Link>
             </section>
             <section className="credentials">
                 <h2>REGISTER</h2>
@@ -42,10 +42,9 @@ export function Login() {
                         className="form-control"
                         placeholder="confirm password"></input>
                 </div>
-                <a href="./connect.html"
-                    className="btn btn-primary maroon-button align-self-center mt-3">
+                <Link to="/connect" className="btn btn-primary maroon-button align-self-center mt-3">
                     Register
-                </a>
+                </Link>
             </section>
         </main>
     );
