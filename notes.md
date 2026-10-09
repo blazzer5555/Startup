@@ -29,4 +29,4 @@ I learned how to organize things with CSS. In order to gets some things on a pag
 
 ## React
 
-Interesting things I have learned about React
+Apparently when using React Bootstrap, Bootstrap's NavLink class overrides my own css. I had to specifically change the Nav a to nav .navlink.
