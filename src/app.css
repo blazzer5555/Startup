@@ -39,11 +39,15 @@ nav {
     padding: 16;
 }
 
-nav a {
+nav .nav-link {
     color: #dddddd;
 }
 
-nav a:hover {
+nav .nav-link.active {
+    color: #dddddd;
+}
+
+nav .nav-link:hover {
     color: #ffffff;
 }
 
@@ -266,4 +270,3 @@ footer {
     display: block;
     font-size: 0.875rem;
 }
-
