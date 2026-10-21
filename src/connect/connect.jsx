@@ -44,7 +44,7 @@ function ListGames() {
 
     return (
         <section className="listed-games">
-            <h3>Active games</h3>
+            <h3>Active Games</h3>
             <table className="active-games-table">
                 <thead>
                     <tr>
@@ -198,7 +198,7 @@ function HostGame() {
 
     return (
         <form className="host-game-input" onSubmit={handleSubmit}>
-            <h3>Host game</h3>
+            <h3>Host Game</h3>
             <div className="host-input-field">
                 <label className="form-label" htmlFor="game-name">Game Name</label>
                 <input
