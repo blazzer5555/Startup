@@ -20,7 +20,14 @@ export function Connect() {
                     className="btn btn-primary maroon-button align-self-center"
                     onClick={() => setActiveSection('HostGame')}
                 >
-                    Host Game
+                    Host New Game
+                </button>
+                <button
+                    type="button"
+                    className="btn btn-primary maroon-button align-self-center"
+                    onClick={() => setActiveSection('listGames')}
+                >
+                    Resume Game
                 </button>
             </section>
             {activeSection === 'listGames' && <ListGames />}
