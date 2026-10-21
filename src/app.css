@@ -133,6 +133,7 @@ footer {
     display: grid;
     flex: 1 1 0;
     grid-template-columns: minmax(0, 1fr) minmax(0, 3fr) minmax(0, 2fr);
+    grid-template-rows: minmax(0, 1fr);
     align-items: stretch;
     min-height: 0;
     width: 100%;
@@ -173,6 +174,7 @@ footer {
 .game-view {
     display: grid;
     grid-template-rows: auto minmax(0, 2fr) minmax(0, 1fr);
+    min-height: 0;
     min-width: 0;
     background-color: #dddddd;
     border-right: 2px solid black;

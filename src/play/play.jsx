@@ -3,6 +3,14 @@ import '../app.css';
 
 export function Play() {
     const [terminalMessages, setTerminalMessages] = React.useState([]);
+    const terminalRef = React.useRef(null);
+
+    React.useLayoutEffect(() => {
+        const terminal = terminalRef.current;
+        if (terminal) {
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+    }, [terminalMessages]);
 
     function MakeDieRoll() {
         const roll = Math.floor(Math.random() * 20) + 1;
@@ -67,7 +75,12 @@ export function Play() {
             <section className="game-view" aria-label="Game view">
                 <h2>VIEWFINDER</h2>
                 <div className="map-marker">Lantern</div>
-                <section className="game-terminal" aria-label="Game terminal" aria-live="polite">
+                <section
+                    ref={terminalRef}
+                    className="game-terminal"
+                    aria-label="Game terminal"
+                    aria-live="polite"
+                >
                     {terminalMessages.map((message, index) => (
                         <p key={index}>{message}</p>
                     ))}
