@@ -12,6 +12,17 @@ export function Play() {
         }
     }, [terminalMessages]);
 
+    React.useEffect(() => {
+        const intervalId = window.setInterval(() => {
+            setTerminalMessages((messages) => [
+                ...messages,
+                "(Websocket connection) The connected player rolled a 1. That's so sad.",
+            ]);
+        }, 10000);
+
+        return () => window.clearInterval(intervalId);
+    }, []);
+
     function MakeDieRoll() {
         const roll = Math.floor(Math.random() * 20) + 1;
         setTerminalMessages((messages) => [...messages, `Rolled a ${roll}`]);
