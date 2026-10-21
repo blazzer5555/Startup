@@ -31,9 +31,13 @@ main {
 }
 
 footer {
+    position: relative;
     background-color: tan;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
     flex: 0 0 auto;
 }
 
@@ -144,7 +148,10 @@ footer {
 }
 
 #exit-game {
-    align-self: flex-start;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     --bs-btn-bg: rgb(85, 85, 85);
     --bs-btn-border-color: black;
     --bs-btn-hover-bg: rgb(40, 40, 40);

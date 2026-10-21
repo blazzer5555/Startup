@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import '../app.css';
 
 export function Play() {
@@ -20,9 +19,6 @@ export function Play() {
                     <button type="button" className="btn btn-outline-dark">Courage
                         Check</button>
                 </div>
-                <Link to="/connect" className="btn btn-primary maroon-button" id="exit-game">
-                    Exit Game
-                </Link>
             </aside>
             <section className="game-view" aria-label="Game view">
                 <h2>VIEWFINDER</h2>

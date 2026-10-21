@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Link, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { Login } from './login/login';
 import { Play } from './play/play';
 import { Connect } from './connect/connect';
@@ -39,16 +39,33 @@ export default function App() {
                     <Route path='/login' element={<Login onLogin={handleLogin} />} />
                     <Route path='*' element={<NotFound />} />
                 </Routes>
-
-                <footer>
-                    <div>
-                        <p>This was made by David Bassett</p>
-                        <a href="https://github.com/blazzer5555/Startup"
-                            className="github-link">link to my github</a>
-                    </div>
-                </footer>
+                <AppFooter />
             </div>
         </BrowserRouter>
+    );
+}
+
+function AppFooter() {
+    const { pathname } = useLocation();
+    const backPath = {
+        '/play': '/connect',
+        '/connect': '/login',
+        '/login': '/home',
+    }[pathname];
+
+    return (
+        <footer>
+            <div>
+                <p>This was made by David Bassett</p>
+                <a href="https://github.com/blazzer5555/Startup"
+                    className="github-link">link to my github</a>
+            </div>
+            {backPath && (
+                <Link to={backPath} className="btn btn-primary maroon-button" id="exit-game">
+                    Back
+                </Link>
+            )}
+        </footer>
     );
 }
 
