@@ -4,8 +4,11 @@ I love web programming!
 
 This file represents what I have learned about web programming.
 
-Helpful command that I like to keep for convenience:
-./deployFiles.sh -k "C:\Users\blazz\OneDrive\Documents\David School Papers\Keys\David's_Key_Pair.pem" -h thetreasureofmountwind.click -s startup
+Deploy Simon Command:
+./deployReact.sh -k "C:\Users\blazz\OneDrive\Documents\David School Papers\Keys\David's_Key_Pair.pem" -h thetreasureofmountwind.click -s simon
+
+Deploy Startup Command:
+./deployReact.sh -k "C:\Users\blazz\OneDrive\Documents\David School Papers\Keys\David's_Key_Pair.pem" -h thetreasureofmountwind.click -s startup
 
 - [My startup](https://startup.thetreasureofmountwind.click)
 - [My simon](https://simon.thetreasureofmountwind.click)
@@ -30,3 +33,7 @@ I learned how to organize things with CSS. In order to gets some things on a pag
 ## React
 
 Apparently when using React Bootstrap, Bootstrap's NavLink class overrides my own css. I had to specifically change the Nav a to nav .navlink.
+
+How to use localStorage:
+localStorage.setItem('userName', 'Tom');
+const userName = localStorage.getItem('userName');
