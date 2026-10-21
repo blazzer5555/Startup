@@ -3,17 +3,27 @@ import { Link } from 'react-router-dom';
 import '../app.css';
 
 export function Connect() {
+    const [activeSection, setActiveSection] = React.useState(null);
+
     return (
         <main>
             <section className="connect-menu-buttons">
-                <a className="btn btn-primary maroon-button align-self-center">
+                <button
+                    type="button"
+                    className="btn btn-primary maroon-button align-self-center"
+                    onClick={() => setActiveSection('listGames')}
+                >
                     List Games
-                </a>
-                <a className="btn btn-primary maroon-button align-self-center">
+                </button>
+                <button
+                    type="button"
+                    className="btn btn-primary maroon-button align-self-center"
+                    onClick={() => setActiveSection('HostGame')}
+                >
                     Host Game
-                </a>
+                </button>
             </section>
-            <section className="listed-games">
+            {activeSection === 'listGames' && <section className="listed-games">
                 <h3>Active games</h3>
                 <table className="active-games-table">
                     <tr>
@@ -47,8 +57,8 @@ export function Connect() {
                         </Link></td>
                     </tr>
                 </table>
-            </section>
-            <section className="host-game-input">
+            </section>}
+            {activeSection === 'HostGame' && <section className="host-game-input">
                 <h3>Host game</h3>
                 <div className="host-input-fields">
                     <label className="form-label">Game Name</label>
@@ -63,8 +73,7 @@ export function Connect() {
                 <Link to="/play" className="btn btn-primary maroon-button align-self-start mt-3">
                     Host Game
                 </Link>
-            </section>
-
+            </section>}
         </main>
     );
 }
