@@ -138,7 +138,7 @@ function HostGame() {
             <div className="host-input-field">
                 <label className="form-label">Game Name</label>
                 <input
-                    className="form-control w-25"
+                    className="form-control"
                     placeholder="Game Name"></input>
             </div>
             <div className="host-input-field">
@@ -147,7 +147,7 @@ function HostGame() {
                     type="text"
                     inputMode="numeric"
                     pattern="[0-9]*"
-                    className="form-control w-25"
+                    className="form-control"
                     value={maxPlayers}
                     onChange={handleMaxPlayersChange}
                     onBlur={() => setMaxPlayers((value) => value || '1')}
@@ -157,7 +157,7 @@ function HostGame() {
             <div className="host-input-field">
                 <label className="form-label">Privacy Level</label>
                 <select
-                    className="form-control w-25"
+                    className="form-control"
                     value={privacyLevel}
                     onChange={(event) => setPrivacyLevel(event.target.value)}
                     required
@@ -172,7 +172,7 @@ function HostGame() {
                     type="text"
                     inputMode="numeric"
                     pattern="[0-9]*"
-                    className="form-control w-25"
+                    className="form-control"
                     value={passcode}
                     onChange={handlePasscodeChange}
                     onBlur={() => setPasscode((value) => value || '0')}
