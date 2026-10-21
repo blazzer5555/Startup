@@ -14,8 +14,7 @@ export function Connect() {
                 </a>
             </section>
             <section className="listed-games">
-                <h3>Active games (What would appear if the user clicked
-                    "List Games")</h3>
+                <h3>Active games</h3>
                 <table className="active-games-table">
                     <tr>
                         <th>Game Name</th>
@@ -56,8 +55,7 @@ export function Connect() {
                 </div>
             </section>
             <section className="host-game-input">
-                <h3>Host game (What would appear if the user clicked
-                    "Host Game")</h3>
+                <h3>Host game</h3>
                 <div className="host-input-fields">
                     <label className="form-label">Game Name</label>
                     <input
