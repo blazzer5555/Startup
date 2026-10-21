@@ -11,6 +11,7 @@ export function Login({ onLogin }) {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
         const username = formData.get('username').trim();
+        const password = formData.get('password');
 
         if (!username) {
             setLoginError('Enter a username.');
@@ -18,7 +19,7 @@ export function Login({ onLogin }) {
         }
 
         setLoginError('');
-        onLogin(username);
+        onLogin(username, password);
         navigate('/connect');
     }
 
@@ -40,7 +41,7 @@ export function Login({ onLogin }) {
         }
 
         setRegistrationError('');
-        onLogin(username);
+        onLogin(username, password);
         navigate('/connect');
     }
 
