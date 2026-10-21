@@ -2,29 +2,75 @@ import React from 'react';
 import '../app.css';
 
 export function Play() {
+    const [terminalMessages, setTerminalMessages] = React.useState([]);
+
+    function MakeDieRoll() {
+        const roll = Math.floor(Math.random() * 20) + 1;
+        setTerminalMessages((messages) => [...messages, `Rolled a ${roll}`]);
+    }
+
+    function MakeOtherDieRoll() {
+        setTerminalMessages((messages) => [
+            ...messages,
+            'Not sure if these buttons will be in the final product',
+        ]);
+    }
+
     return (
         <main className="game-layout">
             <aside className="game-actions" aria-label="Game actions">
                 <div className="game-action-list">
-                    <button type="button" className="btn btn-outline-dark">Roll
-                        D20</button>
-                    <button type="button" className="btn btn-outline-dark">Enemy
-                        Roll</button>
-                    <button type="button" className="btn btn-outline-dark">Draw
-                        Blow</button>
-                    <button type="button" className="btn btn-outline-dark">Hurt
-                        Blow</button>
-                    <button type="button"
-                        className="btn btn-outline-dark">Intelligence Check</button>
-                    <button type="button" className="btn btn-outline-dark">Courage
-                        Check</button>
+                    <button
+                        type="button"
+                        className="btn btn-outline-dark"
+                        onClick={MakeDieRoll}
+                    >
+                        Roll D20
+                    </button>
+                    <button
+                        type="button"
+                        className="btn btn-outline-dark"
+                        onClick={MakeOtherDieRoll}
+                    >
+                        Enemy Roll
+                    </button>
+                    <button
+                        type="button"
+                        className="btn btn-outline-dark"
+                        onClick={MakeOtherDieRoll}
+                    >
+                        Draw Blow
+                    </button>
+                    <button
+                        type="button"
+                        className="btn btn-outline-dark"
+                        onClick={MakeOtherDieRoll}
+                    >
+                        Hurt Blow
+                    </button>
+                    <button
+                        type="button"
+                        className="btn btn-outline-dark"
+                        onClick={MakeOtherDieRoll}
+                    >
+                        Intelligence Check
+                    </button>
+                    <button
+                        type="button"
+                        className="btn btn-outline-dark"
+                        onClick={MakeOtherDieRoll}
+                    >
+                        Courage Check
+                    </button>
                 </div>
             </aside>
             <section className="game-view" aria-label="Game view">
                 <h2>VIEWFINDER</h2>
                 <div className="map-marker">Lantern</div>
-                <section className="game-terminal" aria-label="Game terminal">
-                    <p>Waiting for game events...</p>
+                <section className="game-terminal" aria-label="Game terminal" aria-live="polite">
+                    {terminalMessages.map((message, index) => (
+                        <p key={index}>{message}</p>
+                    ))}
                 </section>
             </section>
             <aside className="game-sidebar" aria-label="Character information">
