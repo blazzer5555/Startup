@@ -108,6 +108,18 @@ function ResumeGame() {
 }
 
 function HostGame() {
+    const [maxPlayers, setMaxPlayers] = React.useState('1');
+
+    function handleMaxPlayersChange(event) {
+        const digits = event.target.value.replace(/\D/g, '');
+        if (!digits) {
+            setMaxPlayers('');
+            return;
+        }
+
+        setMaxPlayers(String(Math.min(10, Math.max(1, Number(digits)))));
+    }
+
     return (
         <section className="host-game-input">
             <h3>Host game</h3>
@@ -120,8 +132,15 @@ function HostGame() {
             <div className="host-input-field">
                 <label className="form-label">Maximum Players</label>
                 <input
+                    type="text"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
                     className="form-control w-25"
-                    placeholder="Max"></input>
+                    value={maxPlayers}
+                    onChange={handleMaxPlayersChange}
+                    onBlur={() => setMaxPlayers((value) => value || '1')}
+                    required
+                />
             </div>
             <Link to="/play" className="btn btn-primary maroon-button align-self-start mt-3">
                 Host Game
