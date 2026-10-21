@@ -109,6 +109,8 @@ function ResumeGame() {
 
 function HostGame() {
     const [maxPlayers, setMaxPlayers] = React.useState('1');
+    const [privacyLevel, setPrivacyLevel] = React.useState('public');
+    const [passcode, setPasscode] = React.useState('0');
 
     function handleMaxPlayersChange(event) {
         const digits = event.target.value.replace(/\D/g, '');
@@ -118,6 +120,16 @@ function HostGame() {
         }
 
         setMaxPlayers(String(Math.min(10, Math.max(1, Number(digits)))));
+    }
+
+    function handlePasscodeChange(event) {
+        const digits = event.target.value.replace(/\D/g, '');
+        if (!digits) {
+            setPasscode('');
+            return;
+        }
+
+        setPasscode(String(Math.min(99999, Number(digits))));
     }
 
     return (
@@ -140,6 +152,32 @@ function HostGame() {
                     onChange={handleMaxPlayersChange}
                     onBlur={() => setMaxPlayers((value) => value || '1')}
                     required
+                />
+            </div>
+            <div className="host-input-field">
+                <label className="form-label">Privacy Level</label>
+                <select
+                    className="form-control w-25"
+                    value={privacyLevel}
+                    onChange={(event) => setPrivacyLevel(event.target.value)}
+                    required
+                >
+                    <option value="public">Public</option>
+                    <option value="private">Private</option>
+                </select>
+            </div>
+            <div className="host-input-field">
+                <label className="form-label">Passcode</label>
+                <input
+                    type="text"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    className="form-control w-25"
+                    value={passcode}
+                    onChange={handlePasscodeChange}
+                    onBlur={() => setPasscode((value) => value || '0')}
+                    disabled={privacyLevel === 'public'}
+                    required={privacyLevel === 'private'}
                 />
             </div>
             <Link to="/play" className="btn btn-primary maroon-button align-self-start mt-3">
