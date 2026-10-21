@@ -38,47 +38,73 @@ export function Connect() {
 }
 
 function ListGames() {
+    const games = getActiveGames();
+
     return (
         <section className="listed-games">
             <h3>Active games</h3>
             <table className="active-games-table">
-                <tr>
-                    <th>Game Name</th>
-                    <th>Host Username</th>
-                    <th>Current capacity</th>
-                    <th>Privacy Level</th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <td>Lol Lmao</td>
-                    <td>Dimingus</td>
-                    <td>2/10</td>
-                    <td>Public</td>
-                    <td><Link to="/play" className="btn btn-primary maroon-button">
-                        Join Game
-                    </Link></td>
-                </tr>
-                <tr>
-                    <td>Just hop on iN</td>
-                    <td>Silencce</td>
-                    <td>1/4</td>
-                    <td>Public</td>
-                    <td><Link to="/play" className="btn btn-primary maroon-button">
-                        Join Game
-                    </Link></td>
-                </tr>
-                <tr>
-                    <td>Sir Thieves</td>
-                    <td>Aavalos</td>
-                    <td>5/5</td>
-                    <td>Private</td>
-                    <td><Link to="/play" className="btn btn-primary maroon-button">
-                        Join Game
-                    </Link></td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Game Name</th>
+                        <th>Host Username</th>
+                        <th>Current capacity</th>
+                        <th>Privacy Level</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {games.map((game) => (
+                        <tr key={game.id}>
+                            <td>{game.name}</td>
+                            <td>{game.hostUsername}</td>
+                            <td>{game.currentPlayers}/{game.maxPlayers}</td>
+                            <td>{game.privacyLevel}</td>
+                            <td>
+                                <Link to="/play" className="btn btn-primary maroon-button">
+                                    Join Game
+                                </Link>
+                            </td>
+                        </tr>
+                    ))}
+                    {games.length === 0 && (
+                        <tr>
+                            <td colSpan="5">No active games.</td>
+                        </tr>
+                    )}
+                </tbody>
             </table>
         </section>
     );
+}
+
+function getActiveGames() {
+    return [
+        {
+            id: 'n29mowb3',
+            name: 'Lol Lmao',
+            hostUsername: 'Dimingus',
+            currentPlayers: 2,
+            maxPlayers: 10,
+            privacyLevel: 'Public',
+        },
+        {
+            id: '01pvnb61',
+            name: 'Just hop on iN',
+            hostUsername: 'Silencce',
+            currentPlayers: 1,
+            maxPlayers: 4,
+            privacyLevel: 'Public',
+        },
+        {
+            id: 'l172vsjd',
+            name: 'Sir Thieves',
+            hostUsername: 'Aavalos',
+            currentPlayers: 5,
+            maxPlayers: 5,
+            privacyLevel: 'Private',
+        },
+    ];
 }
 
 function ResumeGame() {
