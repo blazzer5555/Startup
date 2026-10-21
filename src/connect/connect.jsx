@@ -73,11 +73,13 @@ function HostGame() {
     return (
         <section className="host-game-input">
             <h3>Host game</h3>
-            <div className="host-input-fields">
+            <div className="host-input-field">
                 <label className="form-label">Game Name</label>
                 <input
                     className="form-control w-25"
                     placeholder="Game Name"></input>
+            </div>
+            <div className="host-input-field">
                 <label className="form-label">Maximum Players</label>
                 <input
                     className="form-control w-25"
