@@ -2,6 +2,10 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../app.css';
 
+function authenticateUser(username, password) {}
+
+function registerUser(username, password) {}
+
 export function Login({ onLogin }) {
     const navigate = useNavigate();
     const [loginError, setLoginError] = React.useState('');
@@ -19,6 +23,7 @@ export function Login({ onLogin }) {
         }
 
         setLoginError('');
+        authenticateUser(username, password);
         onLogin(username, password);
         navigate('/connect');
     }
@@ -41,6 +46,7 @@ export function Login({ onLogin }) {
         }
 
         setRegistrationError('');
+        registerUser(username, password);
         onLogin(username, password);
         navigate('/connect');
     }
