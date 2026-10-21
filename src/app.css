@@ -30,29 +30,6 @@ main {
     flex: 1;
 }
 
-nav {
-    background-color: rgb(83, 0, 0);
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    margin: 0;
-    padding: 16;
-}
-
-nav .nav-link {
-    color: #dddddd;
-}
-
-nav .nav-link.active {
-    color: #dddddd;
-}
-
-nav .nav-link:hover {
-    color: #ffffff;
-}
-
 footer {
     background-color: tan;
     display: flex;
