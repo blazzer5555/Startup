@@ -17,6 +17,11 @@ export default function App() {
         setIsAuthenticated(true);
     }
 
+    function handleLogout() {
+        localStorage.removeItem('mountWindUsername');
+        setIsAuthenticated(false);
+    }
+
     return (
         <BrowserRouter>
             <div className="app-layout">
@@ -39,18 +44,18 @@ export default function App() {
                     <Route path='/login' element={<Login onLogin={handleLogin} />} />
                     <Route path='*' element={<NotFound />} />
                 </Routes>
-                <AppFooter />
+                <AppFooter onLogout={handleLogout} />
             </div>
         </BrowserRouter>
     );
 }
 
-function AppFooter() {
+function AppFooter({ onLogout }) {
     const { pathname } = useLocation();
-    const backPath = {
-        '/play': '/connect',
-        '/connect': '/login',
-        '/login': '/home',
+    const footerAction = {
+        '/play': { path: '/connect', label: 'Exit Game' },
+        '/connect': { path: '/login', label: 'Log Out', onClick: onLogout },
+        '/login': { path: '/home', label: 'Back' },
     }[pathname];
 
     return (
@@ -60,9 +65,14 @@ function AppFooter() {
                 <a href="https://github.com/blazzer5555/Startup"
                     className="github-link">link to my github</a>
             </div>
-            {backPath && (
-                <Link to={backPath} className="btn btn-primary maroon-button" id="exit-game">
-                    Back
+            {footerAction && (
+                <Link
+                    to={footerAction.path}
+                    onClick={footerAction.onClick}
+                    className="btn btn-primary maroon-button"
+                    id="exit-game"
+                >
+                    {footerAction.label}
                 </Link>
             )}
         </footer>
