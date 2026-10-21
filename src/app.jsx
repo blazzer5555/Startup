@@ -52,11 +52,23 @@ export default function App() {
 
 function AppFooter({ onLogout }) {
     const { pathname } = useLocation();
+    const [logoutPending, setLogoutPending] = React.useState(false);
     const footerAction = {
         '/play': { path: '/connect', label: 'Exit Game' },
-        '/connect': { path: '/login', label: 'Log Out', onClick: onLogout },
+        '/connect': {
+            path: '/login',
+            label: 'Log Out',
+            onClick: () => setLogoutPending(true),
+        },
         '/login': { path: '/home', label: 'Back' },
     }[pathname];
+
+    React.useEffect(() => {
+        if (pathname === '/login' && logoutPending) {
+            setLogoutPending(false);
+            onLogout();
+        }
+    }, [pathname, logoutPending, onLogout]);
 
     return (
         <footer>
