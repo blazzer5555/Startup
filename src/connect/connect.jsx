@@ -113,7 +113,7 @@ function getHostedGames(username) {
     return [
         {
             id: '51vxphbq',
-            name: "User's game",
+            name: username + "'s game",
             maxPlayers: 1,
             privacyLevel: 'Private',
             passcode: '12345',
