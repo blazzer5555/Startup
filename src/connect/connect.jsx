@@ -4,7 +4,7 @@ import '../app.css';
 
 function createGame(name, maxPlayers, privacyLevel, passcode) {}
 
-export function Connect() {
+export function Connect({ username }) {
     const [activeSection, setActiveSection] = React.useState(null);
 
     return (
@@ -34,7 +34,7 @@ export function Connect() {
             </section>
             {activeSection === 'listGames' && <ListGames />}
             {activeSection === 'hostGame' && <HostGame />}
-            {activeSection === 'resumeGame' && <ResumeGame />}
+            {activeSection === 'resumeGame' && <ResumeGame username={username} />}
         </main>
     );
 }
@@ -109,27 +109,55 @@ function getActiveGames() {
     ];
 }
 
-function ResumeGame() {
+function getHostedGames(username) {
+    return [
+        {
+            id: '51vxphbq',
+            name: "User's game",
+            maxPlayers: 1,
+            privacyLevel: 'Private',
+            passcode: '12345',
+            hostUsername: username,
+        },
+    ];
+}
+
+function ResumeGame({ username }) {
+    const games = getHostedGames(username);
+
     return (
         <section className="listed-games">
             <h3>Your Games</h3>
             <table className="active-games-table">
-                <tr>
-                    <th>Game Name</th>
-                    <th>Maximum Capacity</th>
-                    <th>Privacy Level</th>
-                    <th>Passcode</th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <td>User's game</td>
-                    <td>1</td>
-                    <td>Private</td>
-                    <td>12345</td>
-                    <td><Link to="/play" className="btn btn-primary maroon-button">
-                        Resume Game as Host
-                    </Link></td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Game Name</th>
+                        <th>Maximum Capacity</th>
+                        <th>Privacy Level</th>
+                        <th>Passcode</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {games.map((game) => (
+                        <tr key={game.id}>
+                            <td>{game.name}</td>
+                            <td>{game.maxPlayers}</td>
+                            <td>{game.privacyLevel}</td>
+                            <td>{game.passcode}</td>
+                            <td>
+                                <Link to="/play" className="btn btn-primary maroon-button">
+                                    Resume Game as Host
+                                </Link>
+                            </td>
+                        </tr>
+                    ))}
+                    {games.length === 0 && (
+                        <tr>
+                            <td colSpan="5">You have no hosted games.</td>
+                        </tr>
+                    )}
+                </tbody>
             </table>
         </section>
     );

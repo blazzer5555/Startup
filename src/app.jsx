@@ -42,7 +42,7 @@ export default function App() {
                     />
                     <Route
                         path='/connect'
-                        element={username !== '' ? <Connect /> : <Navigate to='/login' replace />}
+                        element={username !== '' ? <Connect username={username} /> : <Navigate to='/login' replace />}
                     />
                     <Route path='/login' element={<Login onLogin={handleLogin} />} />
                     <Route path='*' element={<NotFound />} />
