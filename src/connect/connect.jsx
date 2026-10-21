@@ -47,12 +47,6 @@ export function Connect() {
                         </Link></td>
                     </tr>
                 </table>
-                <div>
-                    <p>
-                        *This is information the server would serve from the
-                        database*
-                    </p>
-                </div>
             </section>
             <section className="host-game-input">
                 <h3>Host game</h3>
