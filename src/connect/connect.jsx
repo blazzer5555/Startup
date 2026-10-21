@@ -46,12 +46,14 @@ function ListGames() {
                     <th>Game Name</th>
                     <th>Host Username</th>
                     <th>Current capacity</th>
+                    <th>Privacy Level</th>
                     <th></th>
                 </tr>
                 <tr>
                     <td>Lol Lmao</td>
                     <td>Dimingus</td>
                     <td>2/10</td>
+                    <td>Public</td>
                     <td><Link to="/play" className="btn btn-primary maroon-button">
                         Join Game
                     </Link></td>
@@ -60,6 +62,7 @@ function ListGames() {
                     <td>Just hop on iN</td>
                     <td>Silencce</td>
                     <td>1/4</td>
+                    <td>Public</td>
                     <td><Link to="/play" className="btn btn-primary maroon-button">
                         Join Game
                     </Link></td>
@@ -68,6 +71,7 @@ function ListGames() {
                     <td>Sir Thieves</td>
                     <td>Aavalos</td>
                     <td>5/5</td>
+                    <td>Private</td>
                     <td><Link to="/play" className="btn btn-primary maroon-button">
                         Join Game
                     </Link></td>
@@ -80,36 +84,22 @@ function ListGames() {
 function ResumeGame() {
     return (
         <section className="listed-games">
-            <h3>Active games</h3>
+            <h3>Your Games</h3>
             <table className="active-games-table">
                 <tr>
                     <th>Game Name</th>
-                    <th>Host Username</th>
-                    <th>Current capacity</th>
+                    <th>Maximum Capacity</th>
+                    <th>Privacy Level</th>
+                    <th>Passcode</th>
                     <th></th>
                 </tr>
                 <tr>
-                    <td>Lol Lmao</td>
-                    <td>Dimingus</td>
-                    <td>2/10</td>
+                    <td>User's game</td>
+                    <td>1</td>
+                    <td>Private</td>
+                    <td>12345</td>
                     <td><Link to="/play" className="btn btn-primary maroon-button">
-                        Join Game
-                    </Link></td>
-                </tr>
-                <tr>
-                    <td>Just hop on iN</td>
-                    <td>Silencce</td>
-                    <td>1/4</td>
-                    <td><Link to="/play" className="btn btn-primary maroon-button">
-                        Join Game
-                    </Link></td>
-                </tr>
-                <tr>
-                    <td>Sir Thieves</td>
-                    <td>Aavalos</td>
-                    <td>5/5</td>
-                    <td><Link to="/play" className="btn btn-primary maroon-button">
-                        Join Game
+                        Resume Game as Host
                     </Link></td>
                 </tr>
             </table>
