@@ -172,9 +172,8 @@ footer {
 
 .game-view {
     display: grid;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto minmax(0, 3fr) minmax(0, 1fr);
     min-width: 0;
-    place-items: center;
     background-color: #dddddd;
     border-right: 2px solid black;
 }
@@ -182,16 +181,33 @@ footer {
 .game-view h2 {
     margin: 0;
     font-size: 1.25rem;
+    justify-self: center;
 }
 
 .map-marker {
     display: grid;
+    place-self: center;
     width: 100px;
     height: 100px;
     place-items: center;
     border: 2px solid black;
     border-radius: 50%;
     background-color: white;
+}
+
+.game-terminal {
+    min-height: 0;
+    overflow: auto;
+    padding: 0.75rem;
+    border-top: 2px solid rgb(0, 0, 0);
+    background-color: #ffffff;
+    color: #000000;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 0.875rem;
+}
+
+.game-terminal p {
+    margin: 0;
 }
 
 .game-sidebar {

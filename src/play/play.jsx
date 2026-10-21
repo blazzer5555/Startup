@@ -23,6 +23,9 @@ export function Play() {
             <section className="game-view" aria-label="Game view">
                 <h2>VIEWFINDER</h2>
                 <div className="map-marker">Lantern</div>
+                <section className="game-terminal" aria-label="Game terminal">
+                    <p>Waiting for game events...</p>
+                </section>
             </section>
             <aside className="game-sidebar" aria-label="Character information">
                 <section className="game-stats">
