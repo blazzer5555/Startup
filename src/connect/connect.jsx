@@ -1,6 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../app.css';
+
+function createGame(name, maxPlayers, privacyLevel, passcode) {}
 
 export function Connect() {
     const [activeSection, setActiveSection] = React.useState(null);
@@ -134,9 +136,17 @@ function ResumeGame() {
 }
 
 function HostGame() {
+    const navigate = useNavigate();
+    const [gameName, setGameName] = React.useState('');
     const [maxPlayers, setMaxPlayers] = React.useState('1');
     const [privacyLevel, setPrivacyLevel] = React.useState('public');
     const [passcode, setPasscode] = React.useState('0');
+
+    function handleSubmit(event) {
+        event.preventDefault();
+        createGame(gameName, maxPlayers, privacyLevel, passcode);
+        navigate('/play');
+    }
 
     function handleMaxPlayersChange(event) {
         const digits = event.target.value.replace(/\D/g, '');
@@ -159,17 +169,23 @@ function HostGame() {
     }
 
     return (
-        <section className="host-game-input">
+        <form className="host-game-input" onSubmit={handleSubmit}>
             <h3>Host game</h3>
             <div className="host-input-field">
-                <label className="form-label">Game Name</label>
+                <label className="form-label" htmlFor="game-name">Game Name</label>
                 <input
+                    id="game-name"
                     className="form-control"
-                    placeholder="Game Name"></input>
+                    placeholder="Game Name"
+                    value={gameName}
+                    onChange={(event) => setGameName(event.target.value)}
+                    required
+                />
             </div>
             <div className="host-input-field">
-                <label className="form-label">Maximum Players</label>
+                <label className="form-label" htmlFor="maximum-players">Maximum Players</label>
                 <input
+                    id="maximum-players"
                     type="text"
                     inputMode="numeric"
                     pattern="[0-9]*"
@@ -181,8 +197,9 @@ function HostGame() {
                 />
             </div>
             <div className="host-input-field">
-                <label className="form-label">Privacy Level</label>
+                <label className="form-label" htmlFor="privacy-level">Privacy Level</label>
                 <select
+                    id="privacy-level"
                     className="form-control"
                     value={privacyLevel}
                     onChange={(event) => setPrivacyLevel(event.target.value)}
@@ -193,8 +210,9 @@ function HostGame() {
                 </select>
             </div>
             <div className="host-input-field">
-                <label className="form-label">Passcode</label>
+                <label className="form-label" htmlFor="passcode">Passcode</label>
                 <input
+                    id="passcode"
                     type="text"
                     inputMode="numeric"
                     pattern="[0-9]*"
@@ -206,9 +224,9 @@ function HostGame() {
                     required={privacyLevel === 'private'}
                 />
             </div>
-            <Link to="/play" className="btn btn-primary maroon-button align-self-start mt-3">
+            <button type="submit" className="btn btn-primary maroon-button align-self-start mt-3">
                 Host Game
-            </Link>
-        </section>
+            </button>
+        </form>
     );
 }
