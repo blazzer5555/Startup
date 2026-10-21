@@ -18,25 +18,66 @@ export function Connect() {
                 <button
                     type="button"
                     className="btn btn-primary maroon-button align-self-center"
-                    onClick={() => setActiveSection('HostGame')}
+                    onClick={() => setActiveSection('hostGame')}
                 >
                     Host New Game
                 </button>
                 <button
                     type="button"
                     className="btn btn-primary maroon-button align-self-center"
-                    onClick={() => setActiveSection('listGames')}
+                    onClick={() => setActiveSection('resumeGame')}
                 >
                     Resume Game
                 </button>
             </section>
             {activeSection === 'listGames' && <ListGames />}
-            {activeSection === 'HostGame' && <HostGame />}
+            {activeSection === 'hostGame' && <HostGame />}
+            {activeSection === 'resumeGame' && <ResumeGame />}
         </main>
     );
 }
 
 function ListGames() {
+    return (
+        <section className="listed-games">
+            <h3>Active games</h3>
+            <table className="active-games-table">
+                <tr>
+                    <th>Game Name</th>
+                    <th>Host Username</th>
+                    <th>Current capacity</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>Lol Lmao</td>
+                    <td>Dimingus</td>
+                    <td>2/10</td>
+                    <td><Link to="/play" className="btn btn-primary maroon-button">
+                        Join Game
+                    </Link></td>
+                </tr>
+                <tr>
+                    <td>Just hop on iN</td>
+                    <td>Silencce</td>
+                    <td>1/4</td>
+                    <td><Link to="/play" className="btn btn-primary maroon-button">
+                        Join Game
+                    </Link></td>
+                </tr>
+                <tr>
+                    <td>Sir Thieves</td>
+                    <td>Aavalos</td>
+                    <td>5/5</td>
+                    <td><Link to="/play" className="btn btn-primary maroon-button">
+                        Join Game
+                    </Link></td>
+                </tr>
+            </table>
+        </section>
+    );
+}
+
+function ResumeGame() {
     return (
         <section className="listed-games">
             <h3>Active games</h3>
