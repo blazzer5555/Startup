@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
-import { BrowserRouter, Navigate, NavLink, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { Login } from './login/login';
 import { Play } from './play/play';
 import { Connect } from './connect/connect';
@@ -22,16 +22,7 @@ export default function App() {
             <div className="app-layout">
                 <header>
                     <h1>THE TREASURE OF MOUNT WIND</h1>
-                    <nav>
-                        <NavLink className='nav-link' to='/home'>Home Page</NavLink>
-                        <NavLink className='nav-link' to='/login'>Login Page</NavLink>
-                        {isAuthenticated && (
-                            <>
-                                <NavLink className='nav-link' to='/connect'>Connection Page</NavLink>
-                                <NavLink className='nav-link' to='/play'>Play Page</NavLink>
-                            </>
-                        )}
-                    </nav>
+                    <nav></nav>
                 </header>
 
                 <Routes>
