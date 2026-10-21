@@ -94,9 +94,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [X] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
+- [X] **All functionality implemented or mocked out** - There's a lot here:
+A big change was that the nav bar was removed. My program isn't necessarily designed to navigate between pages freely, so to prevent going into the play page while logged out, or returning the the home page and not log out, I removed free naviagtion. Every page before is still accessible, just through the flow the user would usually use.
+The login page stores the user's username and password they enter, for either login or register, and saves them to variables. When they click login or register, respective stubbed functions are called with no effect. When the user logs out from the connect page, a stub function is called to log the user out. 
+The connect page has three buttons. The first and third buttons open up a table each, and the data there is collected from a function that acts as the stub for the server call. The middle button pops up entry fields that the user can fill out. When they hit Host Game, a stub is called. Finally, the play page has several die roll button on the left, which when clicked add a message to the game terminal. A websocket connection is also dummied by having a set interval display messages to the game terminal (the person rolling that die is so unlucky...)
+- [X] **Hooks** - I have many uses of UseState and UseEffect. The most noticeable use of UseEffect is on the connect page. When the page is first rendered, it just displays the three buttons at the top, and when any button is clicked, it renders that respective button's UI. However, upon refresh or navigation away and back, the page only renders the three buttons again.
 
 ## 🚀 Service deliverable
 
