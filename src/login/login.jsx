@@ -2,16 +2,40 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../app.css';
 
-function authenticateUser(username, password) {}
+async function loginUser(username, password) {
+    const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ email: username, password }),
+    });
+    const result = await response.json();
 
-function registerUser(username, password) {}
+    if (!response.ok) {
+        throw new Error(result.msg || 'Unable to log in.');
+    }
+}
+
+async function registerUser(username, password) {
+    const response = await fetch('/api/auth/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ email: username, password }),
+    });
+    const result = await response.json();
+
+    if (!response.ok) {
+        throw new Error(result.msg || 'Unable to register.');
+    }
+}
 
 export function Login({ onLogin }) {
     const navigate = useNavigate();
     const [loginError, setLoginError] = React.useState('');
     const [registrationError, setRegistrationError] = React.useState('');
 
-    function completeLogin(event) {
+    async function completeLogin(event) {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
         const username = formData.get('username').trim();
@@ -23,12 +47,16 @@ export function Login({ onLogin }) {
         }
 
         setLoginError('');
-        authenticateUser(username, password);
-        onLogin(username, password);
-        navigate('/connect');
+        try {
+            await loginUser(username, password);
+            onLogin(username, password);
+            navigate('/connect');
+        } catch (error) {
+            setLoginError(error.message || 'Unable to log in. Please try again.');
+        }
     }
 
-    function completeRegistration(event) {
+    async function completeRegistration(event) {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
         const username = formData.get('registerUsername').trim();
@@ -46,9 +74,13 @@ export function Login({ onLogin }) {
         }
 
         setRegistrationError('');
-        registerUser(username, password);
-        onLogin(username, password);
-        navigate('/connect');
+        try {
+            await registerUser(username, password);
+            onLogin(username, password);
+            navigate('/connect');
+        } catch (error) {
+            setRegistrationError(error.message || 'Unable to register. Please try again.');
+        }
     }
 
     return (
