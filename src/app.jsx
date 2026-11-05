@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
-import { BrowserRouter, Link, Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter, Link, Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { Login } from './login/login';
 import { Play } from './play/play';
 import { Connect } from './connect/connect';
@@ -19,7 +19,16 @@ export default function App() {
         localStorage.setItem('mountWindUsername', enteredUsername);
     }
 
-    function handleLogout() {
+    async function handleLogout() {
+        const response = await fetch('/api/auth/logout', {
+            method: 'DELETE',
+            credentials: 'include',
+        });
+
+        if (!response.ok) {
+            throw new Error(`Logout failed (${response.status}).`);
+        }
+
         localStorage.removeItem('mountWindUsername');
         setUsername('');
         setPassword('');
@@ -55,23 +64,24 @@ export default function App() {
 
 function AppFooter({ onLogout }) {
     const { pathname } = useLocation();
-    const [logoutPending, setLogoutPending] = React.useState(false);
+    const navigate = useNavigate();
+    const [logoutError, setLogoutError] = React.useState('');
     const footerAction = {
         '/play': { path: '/connect', label: 'Exit Game' },
-        '/connect': {
-            path: '/login',
-            label: 'Log Out',
-            onClick: () => setLogoutPending(true),
-        },
+        '/connect': { path: '/login', label: 'Log Out' },
         '/login': { path: '/home', label: 'Back' },
     }[pathname];
 
-    React.useEffect(() => {
-        if (pathname === '/login' && logoutPending) {
-            setLogoutPending(false);
-            onLogout();
+    async function handleLogoutClick(event) {
+        event.preventDefault();
+        setLogoutError('');
+        try {
+            await onLogout();
+            navigate('/login');
+        } catch (error) {
+            setLogoutError(error.message || 'Unable to log out. Please try again.');
         }
-    }, [pathname, logoutPending, onLogout]);
+    }
 
     return (
         <footer>
@@ -83,13 +93,14 @@ function AppFooter({ onLogout }) {
             {footerAction && (
                 <Link
                     to={footerAction.path}
-                    onClick={footerAction.onClick}
+                    onClick={pathname === '/connect' ? handleLogoutClick : undefined}
                     className="btn btn-primary maroon-button"
                     id="exit-game"
                 >
                     {footerAction.label}
                 </Link>
             )}
+            {logoutError && <p role="alert">{logoutError}</p>}
         </footer>
     );
 }
