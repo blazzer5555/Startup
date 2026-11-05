@@ -10,9 +10,9 @@ const port = process.argv.length > 2 ? process.argv[2] : 4000;
 let apiRouter = express.Router();
 let users =[];
 
-app.use(`/api`, apiRouter);
 app.use(cookieParser());
 app.use(express.json());
+app.use(`/api`, apiRouter);
 app.use(express.static('public'));
 
 apiRouter.post('/auth/create', async (req, res) => {
@@ -41,9 +41,13 @@ apiRouter.post('/auth/login', async (req, res) => {
 
 apiRouter.delete('/auth/logout', async (req, res) => {
   const user = await findUser('token', req.cookies[authCookieName]);
-  if (user) {
-    delete user.token;
+  if (!user) {
+    res.clearCookie(authCookieName);
+    res.status(401).send({ msg: 'Unauthorized' });
+    return;
   }
+
+  delete user.token;
   res.clearCookie(authCookieName);
   res.status(204).end();
 });

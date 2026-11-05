@@ -26,7 +26,8 @@ export default function App() {
         });
 
         if (!response.ok) {
-            throw new Error(`Logout failed (${response.status}).`);
+            const result = await response.json();
+            throw new Error(result.msg || `Logout failed (${response.status}).`);
         }
 
         localStorage.removeItem('mountWindUsername');
