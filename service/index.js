@@ -7,6 +7,13 @@ const express = require('express');
 const app = express();
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
+let apiRouter = express.Router();
+
+app.use(`/api`, apiRouter);
+
+app.use(cookieParser());
+
+app.use(express.json());
 
 app.get(/.*/, (_req, res) => {
   res.send({ msg: 'Simon service' });
