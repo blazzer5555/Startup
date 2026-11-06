@@ -49,7 +49,7 @@ export function Login({ onLogin }) {
         setLoginError('');
         try {
             await loginUser(username, password);
-            onLogin(username, password);
+            onLogin();
             navigate('/connect');
         } catch (error) {
             setLoginError(error.message || 'Unable to log in. Please try again.');
@@ -76,7 +76,7 @@ export function Login({ onLogin }) {
         setRegistrationError('');
         try {
             await registerUser(username, password);
-            onLogin(username, password);
+            onLogin();
             navigate('/connect');
         } catch (error) {
             setRegistrationError(error.message || 'Unable to register. Please try again.');

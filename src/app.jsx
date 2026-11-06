@@ -8,15 +8,13 @@ import { Connect } from './connect/connect';
 import { Home } from './home/home';
 
 export default function App() {
-    const [username, setUsername] = React.useState(
-        () => localStorage.getItem('mountWindUsername') || ''
+    const [isLoggedIn, setIsLoggedIn] = React.useState(
+        () => localStorage.getItem('mountWindIsLoggedIn') === 'true'
     );
-    const [password, setPassword] = React.useState('');
 
-    function handleLogin(enteredUsername, enteredPassword) {
-        setUsername(enteredUsername);
-        setPassword(enteredPassword);
-        localStorage.setItem('mountWindUsername', enteredUsername);
+    function handleLogin() {
+        setIsLoggedIn(true);
+        localStorage.setItem('mountWindIsLoggedIn', 'true');
     }
 
     async function handleLogout() {
@@ -30,9 +28,8 @@ export default function App() {
             throw new Error(result.msg || `Logout failed (${response.status}).`);
         }
 
-        localStorage.removeItem('mountWindUsername');
-        setUsername('');
-        setPassword('');
+        setIsLoggedIn(false);
+        localStorage.removeItem('mountWindIsLoggedIn');
     }
 
     return (
@@ -48,11 +45,11 @@ export default function App() {
                     <Route path='/home' element={<Home />} />
                     <Route
                         path='/play'
-                        element={username !== '' ? <Play /> : <Navigate to='/login' replace />}
+                        element={isLoggedIn ? <Play /> : <Navigate to='/login' replace />}
                     />
                     <Route
                         path='/connect'
-                        element={username !== '' ? <Connect username={username} /> : <Navigate to='/login' replace />}
+                        element={isLoggedIn ? <Connect /> : <Navigate to='/login' replace />}
                     />
                     <Route path='/login' element={<Login onLogin={handleLogin} />} />
                     <Route path='*' element={<NotFound />} />

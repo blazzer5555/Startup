@@ -4,7 +4,7 @@ import '../app.css';
 
 function createGame(name, maxPlayers, privacyLevel, passcode) {}
 
-export function Connect({ username }) {
+export function Connect() {
     const [activeSection, setActiveSection] = React.useState(null);
 
     return (
@@ -34,7 +34,7 @@ export function Connect({ username }) {
             </section>
             {activeSection === 'listGames' && <ListGames />}
             {activeSection === 'hostGame' && <HostGame />}
-            {activeSection === 'resumeGame' && <ResumeGame username={username} />}
+            {activeSection === 'resumeGame' && <ResumeGame />}
         </main>
     );
 }
@@ -109,21 +109,20 @@ function getActiveGames() {
     ];
 }
 
-function getHostedGames(username) {
+function getHostedGames() {
     return [
         {
             id: '51vxphbq',
-            name: username + "'s game",
+            name: 'Your game',
             maxPlayers: 1,
             privacyLevel: 'Private',
             passcode: '12345',
-            hostUsername: username,
         },
     ];
 }
 
-function ResumeGame({ username }) {
-    const games = getHostedGames(username);
+function ResumeGame() {
+    const games = getHostedGames();
 
     return (
         <section className="listed-games">
