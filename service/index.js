@@ -52,6 +52,35 @@ apiRouter.delete('/auth/logout', async (req, res) => {
   res.status(204).end();
 });
 
+apiRouter.get('/connect/games', async (req, res) => {
+    res.send([
+        {
+            id: 'n29mowb3',
+            name: 'Lol Lmao',
+            hostUsername: 'Dimingus',
+            currentPlayers: 2,
+            maxPlayers: 10,
+            privacyLevel: 'Public',
+        },
+        {
+            id: '01pvnb61',
+            name: 'Just hop on iN',
+            hostUsername: 'Silencce',
+            currentPlayers: 1,
+            maxPlayers: 4,
+            privacyLevel: 'Public',
+        },
+        {
+            id: 'l172vsjd',
+            name: 'Sir Thieves',
+            hostUsername: 'Aavalos',
+            currentPlayers: 5,
+            maxPlayers: 5,
+            privacyLevel: 'Private',
+        },
+    ]);
+});
+
 const verifyAuth = async (req, res, next) => {
   const user = await findUser('token', req.cookies[authCookieName]);
   if (user) {
