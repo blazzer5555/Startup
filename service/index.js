@@ -10,6 +10,7 @@ const port = process.argv.length > 2 ? process.argv[2] : 4000;
 const verifyAuth = async (req, res, next) => {
   const user = await findUser('token', req.cookies[authCookieName]);
   if (user) {
+    req.authenticatedUser = user;
     next();
   } else {
     res.status(401).send({ msg: 'Unauthorized' });
@@ -19,7 +20,8 @@ const verifyAuth = async (req, res, next) => {
 // Can use "apiRouter.use('/connect', verifyAuth);" to call verifyAuth for all/connect routes.
 
 let apiRouter = express.Router();
-let users =[];
+let users = [];
+let allGames = [];
 
 app.use(cookieParser());
 app.use(express.json());
@@ -61,6 +63,19 @@ apiRouter.delete('/auth/logout', async (req, res) => {
   delete user.token;
   res.clearCookie(authCookieName);
   res.status(204).end();
+});
+
+apiRouter.post('/connect/game', verifyAuth, async (req, res) => {
+    const { gameName, maxPlayers, privacyLevel, passcode } = req.body;
+    const game = {
+      gameName,
+      maxPlayers,
+      privacyLevel,
+      passcode,
+      host: req.authenticatedUser.email,
+    };
+    allGames.push(game);
+    res.status(201).send({ msg: 'Ok' });
 });
 
 apiRouter.get('/connect/games', verifyAuth, async (req, res) => {
