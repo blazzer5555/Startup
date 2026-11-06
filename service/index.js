@@ -21,7 +21,29 @@ const verifyAuth = async (req, res, next) => {
 
 let apiRouter = express.Router();
 let users = [];
-let allGames = [];
+let allGames = [
+        {
+            gameName: 'Lol Lmao',
+            maxPlayers: 10,
+            privacyLevel: 'Public',
+            passcode: '',
+            hostUsername: 'Dimingus',
+        },
+        {
+            gameName: 'Just hop on iN',
+            maxPlayers: 4,
+            privacyLevel: 'Public',
+            passcode: '',
+            hostUsername: 'Silencce',
+        },
+        {
+            gameName: 'Sir Thieves',
+            maxPlayers: 5,
+            privacyLevel: 'Private',
+            passcode: '12345',
+            hostUsername: 'Aavalos',
+        },
+    ];
 
 app.use(cookieParser());
 app.use(express.json());
@@ -79,36 +101,11 @@ apiRouter.post('/connect/game', verifyAuth, async (req, res) => {
 });
 
 apiRouter.get('/connect/games', verifyAuth, async (req, res) => {
-    res.send([
-        {
-            id: 'n29mowb3',
-            name: 'Lol Lmao',
-            hostUsername: 'Dimingus',
-            currentPlayers: 2,
-            maxPlayers: 10,
-            privacyLevel: 'Public',
-        },
-        {
-            id: '01pvnb61',
-            name: 'Just hop on iN',
-            hostUsername: 'Silencce',
-            currentPlayers: 1,
-            maxPlayers: 4,
-            privacyLevel: 'Public',
-        },
-        {
-            id: 'l172vsjd',
-            name: 'Sir Thieves',
-            hostUsername: 'Aavalos',
-            currentPlayers: 5,
-            maxPlayers: 5,
-            privacyLevel: 'Private',
-        },
-    ]);
+    res.status(200).send(allGames);
 });
 
 apiRouter.get('/connect/hosted', verifyAuth, async (req, res) => {
-    res.send([
+    res.status(200).send([
         {
             id: '51vxphbq',
             name: 'Your game',
