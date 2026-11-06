@@ -260,21 +260,22 @@ function HostGame() {
                     <option value="private">Private</option>
                 </select>
             </div>
-            <div className="host-input-field">
-                <label className="form-label" htmlFor="passcode">Passcode</label>
-                <input
-                    id="passcode"
-                    type="text"
-                    inputMode="numeric"
-                    pattern="[0-9]*"
-                    className="form-control"
-                    value={passcode}
-                    onChange={handlePasscodeChange}
-                    onBlur={() => setPasscode((value) => value || '0')}
-                    disabled={privacyLevel === 'public'}
-                    required={privacyLevel === 'private'}
-                />
-            </div>
+            {privacyLevel === 'private' && (
+                <div className="host-input-field">
+                    <label className="form-label" htmlFor="passcode">Passcode</label>
+                    <input
+                        id="passcode"
+                        type="text"
+                        inputMode="numeric"
+                        pattern="[0-9]*"
+                        className="form-control"
+                        value={passcode}
+                        onChange={handlePasscodeChange}
+                        onBlur={() => setPasscode((value) => value || '0')}
+                        required
+                    />
+                </div>
+            )}
             <button type="submit" className="btn btn-primary maroon-button align-self-start mt-3">
                 Host Game
             </button>
