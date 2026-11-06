@@ -27,21 +27,21 @@ let allGames = [
             maxPlayers: 10,
             privacyLevel: 'Public',
             passcode: '',
-            hostUsername: 'Dimingus',
+            host: 'Dimingus',
         },
         {
             gameName: 'Just hop on iN',
             maxPlayers: 4,
             privacyLevel: 'Public',
             passcode: '',
-            hostUsername: 'Silencce',
+            host: 'Silencce',
         },
         {
             gameName: 'Sir Thieves',
             maxPlayers: 5,
             privacyLevel: 'Private',
             passcode: '12345',
-            hostUsername: 'Aavalos',
+            host: 'Aavalos',
         },
     ];
 
@@ -105,15 +105,10 @@ apiRouter.get('/connect/games', verifyAuth, async (req, res) => {
 });
 
 apiRouter.get('/connect/hosted', verifyAuth, async (req, res) => {
-    res.status(200).send([
-        {
-            id: '51vxphbq',
-            name: 'Your game',
-            maxPlayers: 1,
-            privacyLevel: 'Private',
-            passcode: '12345',
-        },
-    ]);
+    const hostedGames = allGames.filter(
+        (game) => game.host === req.authenticatedUser.email
+    );
+    res.status(200).send(hostedGames);
 });
 
 app.use(function (err, req, res, next) {
