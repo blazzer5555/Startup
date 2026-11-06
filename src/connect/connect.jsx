@@ -57,7 +57,16 @@ export function Connect() {
 }
 
 function ListGames() {
-    const games = getActiveGames();
+    const [games, setGames] = React.useState([]);
+    const [loading, setLoading] = React.useState(true);
+    const [loadError, setLoadError] = React.useState('');
+
+    React.useEffect(() => {
+        getActiveGames()
+            .then(setGames)
+            .catch((error) => setLoadError(error.message || 'Unable to load games.'))
+            .finally(() => setLoading(false));
+    }, []);
 
     return (
         <section className="listed-games">
@@ -73,11 +82,17 @@ function ListGames() {
                     </tr>
                 </thead>
                 <tbody>
-                    {games.map((game) => (
-                        <tr key={game.id}>
-                            <td>{game.name}</td>
-                            <td>{game.hostUsername}</td>
-                            <td>{game.currentPlayers}/{game.maxPlayers}</td>
+                    {loading && (
+                        <tr><td colSpan="5">Loading games...</td></tr>
+                    )}
+                    {loadError && (
+                        <tr><td colSpan="5" role="alert">{loadError}</td></tr>
+                    )}
+                    {!loading && !loadError && games.map((game, index) => (
+                        <tr key={game.id || `${game.gameName}-${game.host}-${index}`}>
+                            <td>{game.gameName}</td>
+                            <td>{game.host}</td>
+                            <td>{game.currentPlayers ?? 'N/A'}/{game.maxPlayers}</td>
                             <td>{game.privacyLevel}</td>
                             <td>
                                 <Link to="/play" className="btn btn-primary maroon-button">
@@ -86,7 +101,7 @@ function ListGames() {
                             </td>
                         </tr>
                     ))}
-                    {games.length === 0 && (
+                    {!loading && !loadError && games.length === 0 && (
                         <tr>
                             <td colSpan="5">No active games.</td>
                         </tr>
@@ -97,49 +112,39 @@ function ListGames() {
     );
 }
 
+async function fetchGames(endpoint) {
+    const response = await fetch(endpoint, { credentials: 'include' });
+    const result = await response.json();
+
+    if (!response.ok) {
+        throw new Error(result.msg || `Unable to load games (${response.status}).`);
+    }
+    if (!Array.isArray(result)) {
+        throw new Error('The server returned an invalid games list.');
+    }
+
+    return result;
+}
+
 function getActiveGames() {
-    return [
-        {
-            id: 'n29mowb3',
-            name: 'Lol Lmao',
-            hostUsername: 'Dimingus',
-            currentPlayers: 2,
-            maxPlayers: 10,
-            privacyLevel: 'Public',
-        },
-        {
-            id: '01pvnb61',
-            name: 'Just hop on iN',
-            hostUsername: 'Silencce',
-            currentPlayers: 1,
-            maxPlayers: 4,
-            privacyLevel: 'Public',
-        },
-        {
-            id: 'l172vsjd',
-            name: 'Sir Thieves',
-            hostUsername: 'Aavalos',
-            currentPlayers: 5,
-            maxPlayers: 5,
-            privacyLevel: 'Private',
-        },
-    ];
+    return fetchGames('/api/connect/games');
 }
 
 function getHostedGames() {
-    return [
-        {
-            id: '51vxphbq',
-            name: 'Your game',
-            maxPlayers: 1,
-            privacyLevel: 'Private',
-            passcode: '12345',
-        },
-    ];
+    return fetchGames('/api/connect/hosted');
 }
 
 function ResumeGame() {
-    const games = getHostedGames();
+    const [games, setGames] = React.useState([]);
+    const [loading, setLoading] = React.useState(true);
+    const [loadError, setLoadError] = React.useState('');
+
+    React.useEffect(() => {
+        getHostedGames()
+            .then(setGames)
+            .catch((error) => setLoadError(error.message || 'Unable to load your games.'))
+            .finally(() => setLoading(false));
+    }, []);
 
     return (
         <section className="listed-games">
@@ -155,9 +160,15 @@ function ResumeGame() {
                     </tr>
                 </thead>
                 <tbody>
-                    {games.map((game) => (
-                        <tr key={game.id}>
-                            <td>{game.name}</td>
+                    {loading && (
+                        <tr><td colSpan="5">Loading your games...</td></tr>
+                    )}
+                    {loadError && (
+                        <tr><td colSpan="5" role="alert">{loadError}</td></tr>
+                    )}
+                    {!loading && !loadError && games.map((game, index) => (
+                        <tr key={game.id || `${game.gameName}-${index}`}>
+                            <td>{game.gameName}</td>
                             <td>{game.maxPlayers}</td>
                             <td>{game.privacyLevel}</td>
                             <td>{game.passcode}</td>
@@ -168,7 +179,7 @@ function ResumeGame() {
                             </td>
                         </tr>
                     ))}
-                    {games.length === 0 && (
+                    {!loading && !loadError && games.length === 0 && (
                         <tr>
                             <td colSpan="5">You have no hosted games.</td>
                         </tr>

@@ -101,7 +101,13 @@ apiRouter.post('/connect/host', verifyAuth, async (req, res) => {
 });
 
 apiRouter.get('/connect/games', verifyAuth, async (req, res) => {
-    res.status(200).send(allGames);
+    const games = allGames.map(({ gameName, maxPlayers, privacyLevel, host }) => ({
+      gameName,
+      maxPlayers,
+      privacyLevel,
+      host,
+    }));
+    res.status(200).send(games);
 });
 
 apiRouter.get('/connect/hosted', verifyAuth, async (req, res) => {
