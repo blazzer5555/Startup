@@ -2,7 +2,24 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../app.css';
 
-function createGame(name, maxPlayers, privacyLevel, passcode) {}
+async function createGame(name, maxPlayers, privacyLevel, passcode) {
+    const response = await fetch('/api/connect/game', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({
+            gameName: name,
+            maxPlayers: Number(maxPlayers),
+            privacyLevel,
+            passcode,
+        }),
+    });
+
+    if (!response.ok) {
+        const result = await response.json();
+        throw new Error(result.msg || `Unable to create game (${response.status}).`);
+    }
+}
 
 export function Connect() {
     const [activeSection, setActiveSection] = React.useState(null);
@@ -168,11 +185,17 @@ function HostGame() {
     const [maxPlayers, setMaxPlayers] = React.useState('1');
     const [privacyLevel, setPrivacyLevel] = React.useState('public');
     const [passcode, setPasscode] = React.useState('0');
+    const [creationError, setCreationError] = React.useState('');
 
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault();
-        createGame(gameName, maxPlayers, privacyLevel, passcode);
-        navigate('/play');
+        setCreationError('');
+        try {
+            await createGame(gameName, maxPlayers, privacyLevel, passcode);
+            navigate('/play');
+        } catch (error) {
+            setCreationError(error.message || 'Unable to create game. Please try again.');
+        }
     }
 
     function handleMaxPlayersChange(event) {
@@ -198,6 +221,7 @@ function HostGame() {
     return (
         <form className="host-game-input" onSubmit={handleSubmit}>
             <h3>Host Game</h3>
+            {creationError && <p role="alert">{creationError}</p>}
             <div className="host-input-field">
                 <label className="form-label" htmlFor="game-name">Game Name</label>
                 <input
