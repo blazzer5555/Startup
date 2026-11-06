@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import '../app.css';
 
 async function createGame(name, maxPlayers, privacyLevel, passcode) {
-    const response = await fetch('/api/connect/game', {
+    const response = await fetch('/api/connect/host', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',

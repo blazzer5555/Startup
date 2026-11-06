@@ -87,7 +87,7 @@ apiRouter.delete('/auth/logout', async (req, res) => {
   res.status(204).end();
 });
 
-apiRouter.post('/connect/game', verifyAuth, async (req, res) => {
+apiRouter.post('/connect/host', verifyAuth, async (req, res) => {
     const { gameName, maxPlayers, privacyLevel, passcode } = req.body;
     const game = {
       gameName,
@@ -109,6 +109,30 @@ apiRouter.get('/connect/hosted', verifyAuth, async (req, res) => {
         (game) => game.host === req.authenticatedUser.email
     );
     res.status(200).send(hostedGames);
+});
+
+apiRouter.put('/connect/join', verifyAuth, async (req, res) => {
+    const { gameName, passcode } = req.body;
+    const game = allGames.find((game) => game.gameName === gameName);
+    if (!game) {
+        res.status(404).send({ msg: 'Game not found' });
+        return;
+    }
+    if (game.passcode !== passcode) {
+        res.status(401).send({ msg: 'Invalid passcode' });
+        return;
+    }
+    res.status(200).send({ msg: 'Ok' });
+});
+
+apiRouter.put('/connect/resume', verifyAuth, async (req, res) => {
+    const { gameName } = req.body;
+    const game = allGames.find((game) => game.gameName === gameName);
+    if (!game) {
+        res.status(404).send({ msg: 'Game not found' });
+        return;
+    }
+    res.status(200).send({ msg: 'Ok' });
 });
 
 app.use(function (err, req, res, next) {
