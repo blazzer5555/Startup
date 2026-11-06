@@ -81,6 +81,18 @@ apiRouter.get('/connect/games', async (req, res) => {
     ]);
 });
 
+apiRouter.get('/connect/hosted', async (req, res) => {
+    res.send([
+        {
+            id: '51vxphbq',
+            name: 'Your game',
+            maxPlayers: 1,
+            privacyLevel: 'Private',
+            passcode: '12345',
+        },
+    ]);
+});
+
 const verifyAuth = async (req, res, next) => {
   const user = await findUser('token', req.cookies[authCookieName]);
   if (user) {
