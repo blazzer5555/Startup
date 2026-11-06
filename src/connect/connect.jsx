@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../app.css';
 
 async function createGame(name, maxPlayers, privacyLevel, passcode) {
@@ -18,6 +18,20 @@ async function createGame(name, maxPlayers, privacyLevel, passcode) {
     if (!response.ok) {
         const result = await response.json();
         throw new Error(result.msg || `Unable to create game (${response.status}).`);
+    }
+}
+
+async function submitGameAction(endpoint, gameName, passcode) {
+    const response = await fetch(endpoint, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ gameName, passcode }),
+    });
+
+    if (!response.ok) {
+        const result = await response.json();
+        throw new Error(result.msg || `Game request failed (${response.status}).`);
     }
 }
 
@@ -94,11 +108,7 @@ function ListGames() {
                             <td>{game.host}</td>
                             <td>{game.currentPlayers ?? 'N/A'}/{game.maxPlayers}</td>
                             <td>{game.privacyLevel}</td>
-                            <td>
-                                <Link to="/play" className="btn btn-primary maroon-button">
-                                    Join Game
-                                </Link>
-                            </td>
+                            <td><JoinGameAction game={game} /></td>
                         </tr>
                     ))}
                     {!loading && !loadError && games.length === 0 && (
@@ -109,6 +119,54 @@ function ListGames() {
                 </tbody>
             </table>
         </section>
+    );
+}
+
+function JoinGameAction({ game }) {
+    const navigate = useNavigate();
+    const [passcode, setPasscode] = React.useState('');
+    const [showPasscode, setShowPasscode] = React.useState(false);
+    const [joining, setJoining] = React.useState(false);
+    const [joinError, setJoinError] = React.useState('');
+    const isPrivate = String(game.privacyLevel).toLowerCase() === 'private';
+
+    async function handleJoin(event) {
+        event.preventDefault();
+        if (isPrivate && !showPasscode) {
+            setShowPasscode(true);
+            return;
+        }
+
+        setJoining(true);
+        setJoinError('');
+        try {
+            await submitGameAction('/api/connect/join', game.gameName, passcode);
+            navigate('/play');
+        } catch (error) {
+            setJoinError(error.message || 'Unable to join game.');
+        } finally {
+            setJoining(false);
+        }
+    }
+
+    return (
+        <form onSubmit={handleJoin}>
+            {isPrivate && showPasscode && (
+                <input
+                    type="password"
+                    className="form-control mb-2"
+                    aria-label={`Passcode for ${game.gameName}`}
+                    placeholder="Passcode"
+                    value={passcode}
+                    onChange={(event) => setPasscode(event.target.value)}
+                    required
+                />
+            )}
+            <button type="submit" className="btn btn-primary maroon-button" disabled={joining}>
+                {joining ? 'Joining...' : 'Join Game'}
+            </button>
+            {joinError && <p role="alert">{joinError}</p>}
+        </form>
     );
 }
 
@@ -172,11 +230,7 @@ function ResumeGame() {
                             <td>{game.maxPlayers}</td>
                             <td>{game.privacyLevel}</td>
                             <td>{game.passcode}</td>
-                            <td>
-                                <Link to="/play" className="btn btn-primary maroon-button">
-                                    Resume Game as Host
-                                </Link>
-                            </td>
+                            <td><ResumeGameAction game={game} /></td>
                         </tr>
                     ))}
                     {!loading && !loadError && games.length === 0 && (
@@ -187,6 +241,39 @@ function ResumeGame() {
                 </tbody>
             </table>
         </section>
+    );
+}
+
+function ResumeGameAction({ game }) {
+    const navigate = useNavigate();
+    const [resuming, setResuming] = React.useState(false);
+    const [resumeError, setResumeError] = React.useState('');
+
+    async function handleResume() {
+        setResuming(true);
+        setResumeError('');
+        try {
+            await submitGameAction('/api/connect/resume', game.gameName);
+            navigate('/play');
+        } catch (error) {
+            setResumeError(error.message || 'Unable to resume game.');
+        } finally {
+            setResuming(false);
+        }
+    }
+
+    return (
+        <>
+            <button
+                type="button"
+                className="btn btn-primary maroon-button"
+                onClick={handleResume}
+                disabled={resuming}
+            >
+                {resuming ? 'Resuming...' : 'Resume Game as Host'}
+            </button>
+            {resumeError && <p role="alert">{resumeError}</p>}
+        </>
     );
 }
 

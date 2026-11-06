@@ -124,7 +124,7 @@ apiRouter.put('/connect/join', verifyAuth, async (req, res) => {
         res.status(404).send({ msg: 'Game not found' });
         return;
     }
-    if (game.passcode !== passcode) {
+    if (game.privacyLevel === 'private' && game.passcode !== passcode) {
         res.status(401).send({ msg: 'Invalid passcode' });
         return;
     }
@@ -136,6 +136,10 @@ apiRouter.put('/connect/resume', verifyAuth, async (req, res) => {
     const game = allGames.find((game) => game.gameName === gameName);
     if (!game) {
         res.status(404).send({ msg: 'Game not found' });
+        return;
+    }
+    if (game.host !== req.authenticatedUser.email) {
+        res.status(403).send({ msg: 'You are not the host of this game.' });
         return;
     }
     res.status(200).send({ msg: 'Ok' });
