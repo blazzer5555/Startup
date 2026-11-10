@@ -50,6 +50,51 @@ footer {
     text-align: center;
 }
 
+.home-page {
+    position: relative;
+    justify-content: center;
+    padding: 2rem;
+    background-color: rgb(255, 185, 65);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.home-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: min(100%, 42rem);
+    padding: clamp(1.5rem, 4vw, 3rem);
+    border: 2px solid black;
+    background-color: #f3e5c8;
+}
+
+.home-card .intro {
+    margin: 0;
+}
+
+.photo-credit,
+.scenery-error {
+    position: absolute;
+    right: 0.75rem;
+    bottom: 0.25rem;
+    margin: 0;
+    color: white;
+    font-size: 0.875rem;
+    text-shadow: 0 1px 3px black;
+}
+
+.photo-credit a {
+    color: white;
+}
+
+.scenery-error {
+    left: 0.75rem;
+    right: auto;
+}
+
 .credentials {
     display: flex;
     flex-direction: column;

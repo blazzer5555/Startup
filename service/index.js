@@ -50,6 +50,50 @@ app.use(express.json());
 app.use(`/api`, apiRouter);
 app.use(express.static('public'));
 
+apiRouter.get('/scenery', async (_req, res) => {
+  const accessKey = process.env.UNSPLASH_ACCESS_KEY;
+  if (!accessKey) {
+    res.status(503).send({ msg: 'The scenery image service is not configured.' });
+    return;
+  }
+
+  const unsplashUrl = new URL('https://api.unsplash.com/photos/random');
+  unsplashUrl.searchParams.set('query', 'forest mountain scenery');
+  unsplashUrl.searchParams.set('orientation', 'landscape');
+
+  const response = await fetch(unsplashUrl, {
+    headers: {
+      Authorization: `Client-ID ${accessKey}`,
+      'Accept-Version': 'v1',
+    },
+  });
+
+  if (!response.ok) {
+    res.status(502).send({ msg: 'Unable to load a scenery image from Unsplash.' });
+    return;
+  }
+
+  const photo = await response.json();
+  if (!photo.urls?.regular || !photo.user?.name || !photo.user?.links?.html || !photo.links?.html) {
+    res.status(502).send({ msg: 'Unsplash returned incomplete photo information.' });
+    return;
+  }
+
+  const photographerUrl = new URL(photo.user.links.html);
+  photographerUrl.searchParams.set('utm_source', 'mount_wind');
+  photographerUrl.searchParams.set('utm_medium', 'referral');
+  const photoPageUrl = new URL(photo.links.html);
+  photoPageUrl.searchParams.set('utm_source', 'mount_wind');
+  photoPageUrl.searchParams.set('utm_medium', 'referral');
+
+  res.send({
+    imageUrl: photo.urls.regular,
+    photographerName: photo.user.name,
+    photographerUrl: photographerUrl.toString(),
+    photoPageUrl: photoPageUrl.toString(),
+  });
+});
+
 apiRouter.post('/auth/create', async (req, res) => {
   if (await findUser('email', req.body.email)) {
     res.status(409).send({ msg: 'Existing user' });
