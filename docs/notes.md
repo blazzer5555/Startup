@@ -5,10 +5,10 @@ I love web programming!
 This file represents what I have learned about web programming.
 
 Deploy Simon Command:
-./deployReact.sh -k "C:\Users\blazz\OneDrive\Documents\David School Papers\Keys\David's_Key_Pair.pem" -h thetreasureofmountwind.click -s simon
+./deployService.sh -k "C:\Users\blazz\OneDrive\Documents\David School Papers\Keys\David's_Key_Pair.pem" -h thetreasureofmountwind.click -s simon
 
 Deploy Startup Command:
-./deployReact.sh -k "C:\Users\blazz\OneDrive\Documents\David School Papers\Keys\David's_Key_Pair.pem" -h thetreasureofmountwind.click -s startup
+./deployService.sh -k "C:\Users\blazz\OneDrive\Documents\David School Papers\Keys\David's_Key_Pair.pem" -h thetreasureofmountwind.click -s startup
 
 - [My startup](https://startup.thetreasureofmountwind.click)
 - [My simon](https://simon.thetreasureofmountwind.click)
