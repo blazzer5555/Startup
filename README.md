@@ -105,14 +105,14 @@ The connect page has three buttons. The first and third buttons open up a table 
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
-- [ ] **Uses BCrypt to hash passwords** - I did not complete this part of the deliverable.
+- [X] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
+- [X] **Node.js/Express HTTP service** - vite, node, express, http, the whole shebang runs in this code
+- [X] **Static middleware for frontend** - Every protected endpoint in the backend is protected by a call to verifyAuth.
+- [X] **Calls to third party endpoints** - The home page of my website calls Unsplash to get a random image fitting for the background.
+- [X] **Backend service endpoints** - Endpoints exist for getting all active games, getting games a user has created, creating a new game, and joining and resuming a game.
+- [X] **Frontend calls service endpoints** - The frontend calls and processes all endpoints listed above.
+- [X] **Supports registration, login, logout, and restricted endpoint** - The user can register a new account, login to an existing one, and if they are logged in, log out of their account. Accounts are stored in the backend and are actually implemented.
+- [X] **Uses BCrypt to hash passwords** - BCrypt encrypts my passwords before they are stored in my variables
 
 ## 🚀 DB deliverable
 
