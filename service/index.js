@@ -127,21 +127,21 @@ apiRouter.post('/connect/host', verifyAuth, async (req, res) => {
       passcode,
       host: req.authenticatedUser.username,
     };
-    addNewGame(game);
+    await addNewGame(game);
     res.status(201).send({ msg: 'Ok' });
 });
 
 apiRouter.get('/connect/games', verifyAuth, async (req, res) => {
-    res.status(200).send(getGames());
+    res.status(200).send(await getGames());
 });
 
 apiRouter.get('/connect/hosted', verifyAuth, async (req, res) => {
-    res.status(200).send(getHostedGames(req.authenticatedUser.username));
+    res.status(200).send(await getHostedGames(req.authenticatedUser.username));
 });
 
 apiRouter.put('/connect/join', verifyAuth, async (req, res) => {
     const { gameName, passcode } = req.body;
-    const game = findGame(gameName);
+    const game = await findGame(gameName);
     if (!game) {
         res.status(404).send({ msg: 'Game not found' });
         return;
@@ -155,7 +155,7 @@ apiRouter.put('/connect/join', verifyAuth, async (req, res) => {
 
 apiRouter.put('/connect/resume', verifyAuth, async (req, res) => {
     const { gameName } = req.body;
-    const game = findGame(gameName);
+    const game = await findGame(gameName);
     if (!game) {
         res.status(404).send({ msg: 'Game not found' });
         return;
