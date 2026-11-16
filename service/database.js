@@ -53,17 +53,12 @@ async function removeUserToken(user) {
   );
 }
 
-function addNewGame(game) {
-  allGames.push(game);
+async function addNewGame(game) {
+  await gamesCollection.insertOne(game);
 }
 
-function getGames() {
-  return allGames.map(({ gameName, maxPlayers, privacyLevel, host }) => ({
-    gameName,
-    maxPlayers,
-    privacyLevel,
-    host,
-  }));
+async function getGames() {
+  return gamesCollection.find().toArray();
 }
 
 function getHostedGames(username) {
