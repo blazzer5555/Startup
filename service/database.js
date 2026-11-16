@@ -28,15 +28,13 @@ async function createUser(email, password) {
     password: passwordHash,
     token: uuid.v4(),
   };
-  users.push(user);
-
+  await usersCollection.insertOne(user);
   return user;
 }
 
 async function findUser(field, value) {
   if (!value) return null;
-
-  return users.find((user) => user[field] === value);
+  return usersCollection.findOne({ [field]: value });
 }
 
 function updateUserToken(user) {
