@@ -10,31 +10,6 @@ const db = client.db('TheTreasureOfMountWind');
 const usersCollection = db.collection('users');
 const gamesCollection = db.collection('games');
 
-const users = [];
-const allGames = [
-  {
-    gameName: 'Lol Lmao',
-    maxPlayers: 10,
-    privacyLevel: 'Public',
-    passcode: '',
-    host: 'Dimingus',
-  },
-  {
-    gameName: 'Just hop on iN',
-    maxPlayers: 4,
-    privacyLevel: 'Public',
-    passcode: '',
-    host: 'Silencce',
-  },
-  {
-    gameName: 'Sir Thieves',
-    maxPlayers: 5,
-    privacyLevel: 'Private',
-    passcode: '12345',
-    host: 'Aavalos',
-  },
-];
-
 (async function testConnection() {
   try {
     await db.command({ ping: 1 });
