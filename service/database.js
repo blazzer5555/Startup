@@ -8,6 +8,7 @@ const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostna
 const client = new MongoClient(url);
 const db = client.db('TheTreasureOfMountWind');
 const usersCollection = db.collection('users');
+const gamesCollection = db.collection('games');
 
 const users = [];
 const allGames = [
