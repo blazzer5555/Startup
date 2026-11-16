@@ -118,9 +118,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
-- [ ] **Stores data in MongoDB** - I did not complete this part of the deliverable.
-- [ ] **Stores credentials in MongoDB** - I did not complete this part of the deliverable.
+- [X] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
+- [X] **Stores data in MongoDB** - my in memory array "users" and "allGames" have been turned into the usersCollection and gamesCollection in MongoDB.
+- [X] **Stores credentials in MongoDB** - I specifically ran into an issue where two of the same user could log in at the same time, and I fixed it by saying that if a user logs in, they have a token associated with them. If they try to log in again, the second session will be denied. Yes, the user's credentials are stored, and accounts persist across server restarts.
 
 ## 🚀 WebSocket deliverable
 
