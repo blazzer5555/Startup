@@ -20,11 +20,11 @@ const gamesCollection = db.collection('games');
   }
 })();
 
-async function createUser(email, password) {
+async function createUser(username, password) {
   const passwordHash = await bcrypt.hash(password, 10);
 
   const user = {
-    email: email,
+    username,
     password: passwordHash,
     token: uuid.v4(),
   };
@@ -59,8 +59,8 @@ function getGames() {
   }));
 }
 
-function getHostedGames(email) {
-  return allGames.filter((game) => game.host === email);
+function getHostedGames(username) {
+  return allGames.filter((game) => game.host === username);
 }
 
 function findGame(gameName) {

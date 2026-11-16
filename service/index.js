@@ -78,23 +78,23 @@ apiRouter.get('/scenery', async (_req, res) => {
 });
 
 apiRouter.post('/auth/create', async (req, res) => {
-  if (await findUser('email', req.body.email)) {
+  if (await findUser('username', req.body.username)) {
     res.status(409).send({ msg: 'Existing user' });
   } else {
-    const user = await createUser(req.body.email, req.body.password);
+    const user = await createUser(req.body.username, req.body.password);
 
     setAuthCookie(res, user.token);
-    res.send({ email: user.email });
+    res.send({ username: user.username });
   }
 });
 
 apiRouter.post('/auth/login', async (req, res) => {
-  const user = await findUser('email', req.body.email);
+  const user = await findUser('username', req.body.username);
   if (user) {
     if (await bcrypt.compare(req.body.password, user.password)) {
       const token = updateUserToken(user);
       setAuthCookie(res, token);
-      res.send({ email: user.email });
+      res.send({ username: user.username });
       return;
     }
   }
@@ -121,7 +121,7 @@ apiRouter.post('/connect/host', verifyAuth, async (req, res) => {
       maxPlayers,
       privacyLevel,
       passcode,
-      host: req.authenticatedUser.email,
+      host: req.authenticatedUser.username,
     };
     addNewGame(game);
     res.status(201).send({ msg: 'Ok' });
@@ -132,7 +132,7 @@ apiRouter.get('/connect/games', verifyAuth, async (req, res) => {
 });
 
 apiRouter.get('/connect/hosted', verifyAuth, async (req, res) => {
-    res.status(200).send(getHostedGames(req.authenticatedUser.email));
+    res.status(200).send(getHostedGames(req.authenticatedUser.username));
 });
 
 apiRouter.put('/connect/join', verifyAuth, async (req, res) => {
@@ -156,7 +156,7 @@ apiRouter.put('/connect/resume', verifyAuth, async (req, res) => {
         res.status(404).send({ msg: 'Game not found' });
         return;
     }
-    if (game.host !== req.authenticatedUser.email) {
+    if (game.host !== req.authenticatedUser.username) {
         res.status(403).send({ msg: 'You are not the host of this game.' });
         return;
     }

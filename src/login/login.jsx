@@ -7,7 +7,7 @@ async function loginUser(username, password) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
-        body: JSON.stringify({ email: username, password }),
+        body: JSON.stringify({ username, password }),
     });
     const result = await response.json();
 
@@ -21,7 +21,7 @@ async function registerUser(username, password) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
-        body: JSON.stringify({ email: username, password }),
+        body: JSON.stringify({ username, password }),
     });
     const result = await response.json();
 
