@@ -37,13 +37,20 @@ async function findUser(field, value) {
   return usersCollection.findOne({ [field]: value });
 }
 
-function updateUserToken(user) {
-  user.token = uuid.v4();
-  return user.token;
+async function updateUserToken(user) {
+  const token = uuid.v4();
+  const result = await usersCollection.updateOne(
+    { _id: user._id, token: { $exists: false } },
+    { $set: { token } }
+  );
+  return result.matchedCount === 1 ? token : null;
 }
 
-function removeUserToken(user) {
-  delete user.token;
+async function removeUserToken(user) {
+  await usersCollection.updateOne(
+    { _id: user._id, token: user.token },
+    { $unset: { token: '' } }
+  );
 }
 
 function addNewGame(game) {

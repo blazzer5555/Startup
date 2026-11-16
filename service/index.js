@@ -92,7 +92,11 @@ apiRouter.post('/auth/login', async (req, res) => {
   const user = await findUser('username', req.body.username);
   if (user) {
     if (await bcrypt.compare(req.body.password, user.password)) {
-      const token = updateUserToken(user);
+      const token = await updateUserToken(user);
+      if (!token) {
+        res.status(409).send({ msg: 'This account is already logged in.' });
+        return;
+      }
       setAuthCookie(res, token);
       res.send({ username: user.username });
       return;
@@ -109,7 +113,7 @@ apiRouter.delete('/auth/logout', async (req, res) => {
     return;
   }
 
-  removeUserToken(user);
+  await removeUserToken(user);
   res.clearCookie(authCookieName);
   res.status(204).end();
 });
