@@ -61,12 +61,12 @@ async function getGames() {
   return gamesCollection.find().toArray();
 }
 
-function getHostedGames(username) {
-  return allGames.filter((game) => game.host === username);
+async function getHostedGames(username) {
+  return gamesCollection.find({ host: username }).toArray();
 }
 
-function findGame(gameName) {
-  return allGames.find((game) => game.gameName === gameName);
+async function findGame(gameName) {
+  return gamesCollection.findOne({ gameName });
 }
 
 module.exports = {
