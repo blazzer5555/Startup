@@ -17,8 +17,6 @@ const verifyAuth = async (req, res, next) => {
   }
 };
 
-// Can use "apiRouter.use('/connect', verifyAuth);" to call verifyAuth for all/connect routes.
-
 let apiRouter = express.Router();
 let users = [];
 let allGames = [
